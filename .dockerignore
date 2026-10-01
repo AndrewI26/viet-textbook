@@ -1,0 +1,8 @@
+.git
+.venv
+.claude
+dist
+anki
+recordings
+**/__pycache__
+.DS_Store

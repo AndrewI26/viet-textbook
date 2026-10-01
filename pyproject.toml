@@ -1,0 +1,38 @@
+[project]
+name = "viet-textbook"
+version = "0.1.0"
+description = "Open source textbook for learning Southern Vietnamese"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "genanki>=0.13.1",
+    "markdown>=3.7",
+    "pyyaml>=6.0.3",
+]
+
+# Commands: `uv run <name>`
+[project.scripts]
+site = "textbook.site:main"     # build the pages into dist/
+serve = "textbook.serve:serve"  # serve dist/ on http://localhost:8000
+dev = "textbook.serve:dev"      # site + serve
+clean = "textbook.serve:clean"  # delete dist/
+audio = "textbook.audio:main"   # generate pronunciation clips into audio/
+anki = "textbook.anki:main"     # build anki/vietnamese-southern.apkg
+build = "textbook.build:main"   # audio + anki + site, all at once
+docker-test = "textbook.deploy:docker_test"  # build the Docker image and run it on :8080
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "textbook"
+
+# The voice model is only needed on your machine, never in Docker.
+[dependency-groups]
+audio = [
+    "vieneu>=3.8.3",
+]
+
+[tool.uv]
+default-groups = ["audio"]

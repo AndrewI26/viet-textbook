@@ -1,0 +1,101 @@
+# Flashcards for chapter 1. See README.md ("Writing flashcards") for the card types.
+
+chapter: 1
+title: How Vietnamese works
+
+sections:
+  - id: "1.1"
+    title: About this book
+    cards:
+      - { type: basic, front: "Which accent does this book teach?", back: "Southern, the accent of Sài Gòn and the Mekong Delta" }
+      - { type: basic, front: "Is Vietnamese spelled differently in the South?", back: "No. Only the pronunciation changes." }
+      - { type: basic, front: "How many tones do you hear in the South?", back: "Five. *Hỏi* and *ngã* sound the same." }
+      - { type: basic, front: "In the South, **v**, **d** and **gi** sound like which English sound?", back: "*y*, as in *yes*: [[vui]], [[dạ]]" }
+      - { type: basic, front: "In the South, how does [[bạn]] (friend) end?", back: "Like *-ng*: it sounds like \"bạng\"" }
+
+  - id: "1.2"
+    title: The alphabet
+    cards:
+      - { type: basic, front: "How many letters are in the Vietnamese alphabet?", back: "29" }
+      - { type: basic, front: "Which English letters aren't used (except in foreign words)?", back: "f, j, w, z" }
+      - { type: basic, front: "Which six vowel letters have a mark built in?", back: "ă, â, ê, ô, ơ, ư" }
+      - { type: basic, front: "What's the difference between **đ** and **d**?", back: "**đ** is a hard d, like *do*. In the South, **d** sounds like *y*." }
+      - { type: basic, front: "What is the letter **đ** called?", back: "[[đờ]]" }
+      - { type: read, vi: ba, tip: "three; dad (Southern)" }
+      - { type: read, vi: ăn, tip: "to eat" }
+      - { type: read, vi: ấm, tip: "warm" }
+      - { type: read, vi: em, tip: "younger sibling" }
+      - { type: read, vi: tên, tip: "name" }
+      - { type: read, vi: có, tip: "to have" }
+      - { type: read, vi: cô, tip: "aunt; Miss" }
+      - { type: read, vi: cơm, tip: "cooked rice" }
+      - { type: read, vi: thư, tip: "letter (mail)" }
+      - { type: read, vi: đi, tip: "to go. **đ** is a hard d." }
+      - { type: read, vi: gà, tip: "chicken" }
+      - { type: read, vi: kem, tip: "ice cream" }
+      - { type: read, vi: lá, tip: "leaf" }
+      - { type: read, vi: quá, tip: "very, too" }
+      - { type: read, vi: rau, tip: "vegetables" }
+      - { type: read, vi: xe, tip: "car, motorbike" }
+
+  - id: "1.3"
+    title: Anatomy of a syllable
+    cards:
+      - { type: basic, front: "What are the four parts of a Vietnamese syllable?", back: "Start · vowel · end · tone" }
+      - { type: basic, front: "Which two parts does every syllable have?", back: "A vowel and a tone" }
+      - { type: basic, front: "Does a syllable with no tone mark have a tone?", back: "Yes: *ngang*, the flat tone" }
+      - { type: basic, front: "Which consonants can end a syllable?", back: "c, ch, m, n, ng, nh, p, t" }
+      - { type: basic, front: "Split [[tiếng]] into start · vowel · end · tone", back: "t · iê · ng · sắc" }
+      - { type: basic, front: "Split [[Việt]] into start · vowel · end · tone", back: "v · iê · t · nặng" }
+      - { type: basic, front: "Split [[bán]] into start · vowel · end · tone", back: "b · a · n · sắc" }
+      - { type: basic, front: "Split [[người]] into start · vowel · end · tone", back: "ng · ươ · i · huyền" }
+
+  - id: "1.4"
+    title: Two kinds of marks
+    cards:
+      - { type: basic, front: "What does a vowel mark (like the one in **ô**) do?", back: "Makes a different vowel. It's part of the letter." }
+      - { type: basic, front: "What does a tone mark do?", back: "Changes the pitch of the whole syllable" }
+      - { type: basic, front: "Which tone has no mark? (**a**)", back: "ngang: flat, in the middle of your voice" }
+      - { type: basic, front: "Which tone is marked **á**?", back: "sắc: rises high" }
+      - { type: basic, front: "Which tone is marked **à**?", back: "huyền: low, falling gently" }
+      - { type: basic, front: "Which tone is marked **ả**?", back: "hỏi: dips down, then rises" }
+      - { type: basic, front: "Which tone is marked **ã**?", back: "ngã: in the South, the same as hỏi" }
+      - { type: basic, front: "Which tone is marked **ạ**?", back: "nặng: low and heavy, with a small dip" }
+      - { type: basic, front: "Which two tones sound the same in the South?", back: "[[hỏi]] and [[ngã]]" }
+      - { type: read, vi: ma, tip: "ghost · ngang: flat" }
+      - { type: read, vi: má, tip: "mom · sắc: rises high" }
+      - { type: read, vi: mà, tip: "but · huyền: low, falling" }
+      - { type: read, vi: mả, tip: "grave · hỏi: dips, then rises" }
+      - { type: read, vi: mã, tip: "horse · ngã: same as hỏi in the South" }
+      - { type: read, vi: mạ, tip: "rice seedling · nặng: low and heavy" }
+      - { type: listen, vi: ma, answer: "ngang: flat · ghost" }
+      - { type: listen, vi: má, answer: "sắc: rises high · mom" }
+      - { type: listen, vi: mà, answer: "huyền: low, falling · but" }
+      - { type: listen, vi: mả, answer: "hỏi or ngã (**mả** or **mã**): they sound the same in the South" }
+      - { type: listen, vi: mạ, answer: "nặng: low and heavy · rice seedling" }
+
+  - id: "1.5"
+    title: How to practise
+    cards:
+      - { type: basic, front: "What three steps should you take with every new word?", back: "1. Read it and guess<br>2. Say it out loud<br>3. Click to check, then say it again" }
+      - { type: basic, front: "Why practise pairs like [[ma]] and [[má]]?", back: "Words that differ by one sound or tone train your ear fastest." }
+      - { type: listen, vi: ba, answer: "ngang: flat" }
+      - { type: listen, vi: bá, answer: "sắc: rises high" }
+      - { type: listen, vi: bà, answer: "huyền: low, falling" }
+      - { type: listen, vi: bả, answer: "hỏi or ngã (**bả** or **bã**): the same in the South" }
+      - { type: listen, vi: bạ, answer: "nặng: low and heavy" }
+
+  - title: Vocabulary
+    cards:
+      - { type: vocab, vi: tiếng Việt, en: Vietnamese (language) }
+      - { type: vocab, vi: tôi, en: "I, me" }
+      - { type: vocab, vi: em, en: younger sibling }
+      - { type: vocab, vi: chị, en: older sister }
+      - { type: vocab, vi: ba, en: dad (Southern), notes: "Also means *three*." }
+      - { type: vocab, vi: mẹ, en: mother, notes: "In the South, people also say [[má]]." }
+      - { type: vocab, vi: bà, en: grandmother }
+      - { type: vocab, vi: ăn, en: to eat }
+      - { type: vocab, vi: đi, en: to go }
+      - { type: vocab, vi: có, en: to have }
+      - { type: vocab, vi: cơm, en: cooked rice }
+      - { type: vocab, vi: vui, en: happy }

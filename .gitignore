@@ -1,0 +1,10 @@
+# Python / uv
+.venv/
+__pycache__/
+
+# Build output
+dist/
+anki/*.apkg
+
+# macOS
+.DS_Store

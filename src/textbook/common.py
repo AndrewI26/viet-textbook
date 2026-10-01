@@ -1,6 +1,7 @@
 """Paths and helpers shared by the build commands."""
 
 import hashlib
+import itertools
 import re
 import unicodedata
 from pathlib import Path
@@ -25,6 +26,15 @@ _CODE = re.compile(
 )
 
 
+# <sentence-builder vi="{who} tên là {name}." en="{who} name is {name}.">
+# who: Tôi = My | Anh = Your
+# name: Lan | Minh
+# </sentence-builder>
+BUILDER = re.compile(r"<sentence-builder\b([^>]*)>(.*?)</sentence-builder>", re.S)
+_ATTR = re.compile(r'([\w-]+)="([^"]*)"')
+SLOT_REF = re.compile(r"\{(\w+)\}")
+
+
 def normalize(text: str) -> str:
     """NFC-normalize and collapse whitespace so the same words always match."""
     return unicodedata.normalize("NFC", " ".join(text.split()))
@@ -41,6 +51,37 @@ def audio_filename(text: str) -> str:
     """Audio file for a word or phrase. Shared by the website and the Anki deck."""
     key = normalize(text).lower()
     return hashlib.sha1(key.encode("utf-8")).hexdigest()[:12] + ".mp3"
+
+
+def parse_builder(attrs: str, body: str) -> dict:
+    """A sentence builder: templates plus, for each slot, a list of (Vietnamese, English) options."""
+    values = dict(_ATTR.findall(attrs))
+    slots = []
+    for line in body.strip().splitlines():
+        name, colon, options = line.partition(":")
+        if not colon:
+            continue
+        choices = []
+        for option in options.split("|"):
+            vi, _, en = option.partition("=")
+            choices.append((normalize(vi), normalize(en) or normalize(vi)))
+        slots.append((name.strip(), choices))
+    return {"vi": values.get("vi", ""), "en": values.get("en", ""), "slots": slots}
+
+
+def fill_template(template: str, words: dict[str, str]) -> str:
+    return normalize(SLOT_REF.sub(lambda m: words.get(m.group(1), m.group(0)), template))
+
+
+def builder_sentences(builder: dict) -> list[tuple[str, str]]:
+    """Every (Vietnamese, English) sentence a builder can make."""
+    names = [name for name, _ in builder["slots"]]
+    sentences = []
+    for combo in itertools.product(*(choices for _, choices in builder["slots"])):
+        vi = fill_template(builder["vi"], {n: c[0] for n, c in zip(names, combo)})
+        en = fill_template(builder["en"], {n: c[1] for n, c in zip(names, combo)})
+        sentences.append((vi, en))
+    return sentences
 
 
 def page_sources() -> list[Path]:
@@ -70,6 +111,8 @@ def collect_texts() -> set[str]:
         source = _CODE.sub("", page.read_text("utf-8"))
         for match in SAY_MARKUP.finditer(source):
             texts.add(parse_say(match.group(1))[1])
+        for match in BUILDER.finditer(source):
+            texts.update(vi for vi, _ in builder_sentences(parse_builder(match.group(1), match.group(2))))
     for deck in sorted(CARDS.glob("*.yaml")) if CARDS.exists() else []:
         data = load_cards(deck)
         for section in data.get("sections", []):

@@ -12,6 +12,7 @@ Usage: uv run site [--strict]
 
 import argparse
 import html
+import json
 import posixpath
 import re
 import shutil
@@ -25,7 +26,19 @@ import markdown
 import yaml
 from latex2mathml.converter import convert as latex_to_mathml
 
-from .common import ANKI, AUDIO, CHAPTERS, DIST, SAY_MARKUP, SITE, audio_filename, parse_say
+from .common import (
+    ANKI,
+    AUDIO,
+    BUILDER,
+    CHAPTERS,
+    DIST,
+    SAY_MARKUP,
+    SITE,
+    audio_filename,
+    builder_sentences,
+    parse_builder,
+    parse_say,
+)
 
 SITE_NAME = "Tiếng Việt"
 
@@ -217,6 +230,34 @@ def grouped(chapters: list[Page], parts: dict[int, str]) -> list[tuple[str, list
     return groups
 
 
+def render_builders(body: str, base: str, missing: set[str]) -> str:
+    """Turn each <sentence-builder> into JSON for site/components/sentence-builder.js,
+    including the audio file for every sentence it can make."""
+
+    def replace(m: re.Match) -> str:
+        builder = parse_builder(html.unescape(m.group(1)), html.unescape(m.group(2)))
+        audio = {}
+        for vi, _ in builder_sentences(builder):
+            filename = audio_filename(vi)
+            if (AUDIO / filename).exists():
+                audio[vi] = f"{base}audio/{filename}"
+            else:
+                missing.add(vi)
+        data = {
+            "vi": builder["vi"],
+            "en": builder["en"],
+            "slots": [
+                {"name": name, "options": [{"vi": vi, "en": en} for vi, en in choices]}
+                for name, choices in builder["slots"]
+            ],
+            "audio": audio,
+        }
+        payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+        return f'<sentence-builder><script type="application/json">{payload}</script></sentence-builder>'
+
+    return BUILDER.sub(replace, body)
+
+
 def table_of_contents(chapters: list[Page], parts: dict[int, str], base: str) -> str:
     """The home page's contents: each chapter with its numbered sections inline, grouped by part."""
     out = ['<div class="toc">']
@@ -344,6 +385,7 @@ def build() -> tuple[int, set[str]]:
     for page in pages:
         b = page.base
         body = page.body.replace(CHAPTER_CARDS_MARKER, table_of_contents(chapters, parts, b))
+        body = render_builders(body, b, missing)
         body = link_words(body, b, missing)
         title = link_words(page.title, b, missing)
         scripts = "\n".join(

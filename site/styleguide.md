@@ -166,6 +166,12 @@ Southern speakers pronounce *hỏi* and *ngã* the same way, so in practice you 
 [[to]] [[tô]]
 </minimal-pair>
 
+### Sentence builder
+
+<sentence-builder vi="Chào {you}!" en="Hi! (to {you})">
+you: anh = a man a bit older | chị = a woman a bit older | em = someone younger | bạn = someone your age | cô = a woman your parents' age | chú = a man your parents' age
+</sentence-builder>
+
 ### Tone checker
 
 Press **Record** and say the word. The first time, it asks for a flat "aaa" to learn your normal voice level. Your recording stays in your browser.

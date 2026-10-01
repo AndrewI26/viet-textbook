@@ -933,6 +933,71 @@ tone-chart {
 .tonechart-word.is-active { background: var(--surface-3); }
 .tonechart-word .caption { font-size: 13px; }
 
+/* ---------- Sentence builder (<sentence-builder>) ---------- */
+
+sentence-builder {
+  display: block;
+  margin: 24px 0;
+  padding: 24px;
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+.sb-top { display: flex; align-items: flex-start; gap: 16px; }
+.sb-play .say-icon { width: 44px; height: 44px; margin: 4px 0 0; top: 0; }
+.sb-words { min-width: 0; }
+.prose .sb-sentence {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 28px;
+  line-height: 1.6;
+  color: var(--text-strong);
+}
+.sb-chip {
+  margin: 0 1px;
+  padding: 0 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background: var(--bg);
+  color: inherit;
+  font: inherit;
+  line-height: 1.35;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.sb-chip:hover, .sb-chip.is-hot { border-color: var(--text-strong); background: var(--surface-3); }
+.prose .sb-english { margin: 2px 0 0; font-size: 16px; color: var(--muted); }
+
+.sb-rows { display: grid; gap: 10px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
+.sb-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.sb-label {
+  min-width: 76px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.sb-option {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--text-strong);
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.sb-option small { font-size: 12px; color: var(--muted); }
+.sb-option:hover { background: var(--surface-2); }
+.sb-option[aria-pressed="true"] { background: var(--btn-bg); border-color: var(--btn-bg); color: var(--btn-fg); }
+.sb-option[aria-pressed="true"] small { color: inherit; opacity: 0.7; }
+.sb-shuffle { justify-self: start; margin-top: 4px; }
+
 /* ---------- Math (MathML, converted from LaTeX at build time) ---------- */
 
 math {
@@ -1078,6 +1143,9 @@ math mtext { font-family: var(--font-serif); }
 @media (max-width: 600px) {
   .topbar { padding: 0 16px; }
   .prose .toc-sections { margin-left: 0; }
+  sentence-builder { padding: 16px; }
+  .prose .sb-sentence { font-size: 22px; }
+  .sb-label { min-width: 100%; }
   .toc-name { font-size: 21px; }
   .main { padding: 32px 16px 64px; }
   h1 { font-size: 40px; }

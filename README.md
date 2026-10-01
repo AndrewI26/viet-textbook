@@ -36,7 +36,7 @@ Audio options: `uv run audio --force "má"` remakes one clip, `--all` remakes ev
 chapters/      the book: one .md (or .html) file per chapter, numbered
 cards/         flashcards: one .yaml file per chapter
 site/          page template, home page, cheat sheet, style guide, CSS and JS
-site/components/  reusable widgets (<tone-drill>, <minimal-pair>)
+site/components/  reusable widgets (drills, tone checker, tone chart, sentence builder)
 audio/         generated MP3s, committed to git
 recordings/    real recordings that replace the AI audio (optional)
 src/textbook/  the build commands
@@ -61,6 +61,15 @@ The letter [[đ :: đờ]] is called "đờ".   <!-- shown :: spoken -->
 <div class="tip" markdown="1">
 Say each word **before** you click it.
 </div>
+```
+
+**Sentence builders** split a sentence into parts the reader can swap. Each line is a slot: its name, then options separated by `|`, written `Vietnamese = English` (or one word when both are the same). Audio is generated for every combination, so keep the number of combinations reasonable.
+
+```markdown
+<sentence-builder vi="{who} tên là {name}." en="{who} name is {name}.">
+who: Tôi = My | Anh ấy = His | Chị ấy = Her
+name: Lan | Minh | Mark
+</sentence-builder>
 ```
 
 **Math:** write LaTeX between `$…$` (inline) or `$$…$$` (on its own line). It's converted to MathML when the site builds, so no math library is loaded in the browser. Use `\$` for a literal dollar sign. See `site/cheatsheet.md` for examples.

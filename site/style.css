@@ -1063,8 +1063,8 @@ math mtext { font-family: var(--font-serif); }
 /* ---------- Pager ---------- */
 
 .pager {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-top: 80px;
   padding-top: 32px;
@@ -1074,22 +1074,51 @@ math mtext { font-family: var(--font-serif); }
 
 .pager-link {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  gap: 16px;
   min-width: 0;
-  padding: 14px 28px;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--r-pill);
+  padding: 20px 24px;
+  border-radius: 20px;
+  background: var(--surface);
   color: var(--text-strong);
   text-decoration: none;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition: background-color 0.15s ease;
 }
-.pager-link:hover { background: var(--surface-2); border-color: var(--text-strong); }
-.pager-next { margin-left: auto; text-align: right; }
-.pager-label { font-size: 13px; color: var(--muted); }
-.pager-title { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.pager-prev .pager-title::before { content: "← "; }
-.pager-next .pager-title::after { content: " →"; }
+.pager-link:hover { background: var(--surface-2); }
+.pager-prev { grid-column: 1; }
+.pager-next { grid-column: 2; justify-content: flex-end; text-align: right; }
+
+.pager-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.pager-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.pager-title {
+  overflow: hidden;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pager-arrow {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-3);
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+.pager-link:hover .pager-arrow { background: var(--btn-bg); color: var(--btn-fg); }
+.pager-prev:hover .pager-arrow { transform: translateX(-3px); }
+.pager-next:hover .pager-arrow { transform: translateX(3px); }
 
 /* ---------- Style guide helpers ---------- */
 
@@ -1164,8 +1193,10 @@ math mtext { font-family: var(--font-serif); }
   .tip, .south, .warn, .sheet-card { padding: 20px; }
   tone-drill, word-drill, minimal-pair, say-it, tone-chart { padding: 16px; }
   .card { padding: 24px; }
-  .pager { flex-direction: column; }
-  .pager-next { margin-left: 0; }
+  .pager { grid-template-columns: 1fr; }
+  .pager-next { grid-column: 1; }
+  .pager-link { padding: 16px 18px; }
+  .pager-title { font-size: 19px; }
   .dialogue li { max-width: 92%; }
 }
 

@@ -319,27 +319,40 @@ def sidebar(chapters: list[Page], parts: dict[int, str], extras: dict[str, Page]
     return "".join(out)
 
 
+ARROW_LEFT = (
+    '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" '
+    'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>'
+)
+ARROW_RIGHT = (
+    '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" '
+    'stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+)
+
+
 def pager(sequence: list[Page], current: Page) -> str:
+    """Previous / next cards at the bottom of the home page and each chapter."""
     if current not in sequence:
         return ""
     i = sequence.index(current)
     b = current.base
+
+    def card(page: Page, direction: str) -> str:
+        title = "Home" if page.out == "index.html" else page.title_text
+        word = "Previous" if direction == "prev" else "Next"
+        label = f"{word} · {page.eyebrow}" if page.number is not None else word
+        arrow = f'<span class="pager-arrow" aria-hidden="true">{ARROW_LEFT if direction == "prev" else ARROW_RIGHT}</span>'
+        text = (
+            f'<span class="pager-text"><span class="pager-label">{html.escape(label)}</span>'
+            f'<span class="pager-title">{html.escape(title)}</span></span>'
+        )
+        inner = arrow + text if direction == "prev" else text + arrow
+        return f'<a class="pager-link pager-{direction}" href="{b}{page.out}">{inner}</a>'
+
     links = []
     if i > 0:
-        prev = sequence[i - 1]
-        label = "Home" if prev.out == "index.html" else prev.title_text
-        links.append(
-            f'<a class="pager-link pager-prev" href="{b}{prev.out}">'
-            f'<span class="pager-label">Previous</span>'
-            f'<span class="pager-title">{html.escape(label)}</span></a>'
-        )
+        links.append(card(sequence[i - 1], "prev"))
     if i < len(sequence) - 1:
-        nxt = sequence[i + 1]
-        links.append(
-            f'<a class="pager-link pager-next" href="{b}{nxt.out}">'
-            f'<span class="pager-label">Next</span>'
-            f'<span class="pager-title">{html.escape(nxt.title_text)}</span></a>'
-        )
+        links.append(card(sequence[i + 1], "next"))
     return "".join(links)
 
 

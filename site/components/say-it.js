@@ -76,9 +76,9 @@ async function decode(arrayBuffer) {
   return (await offline.startRendering()).getChannelData(0);
 }
 
-function yin(samples, { frame = 1024, hop = 160, fmin = 65, fmax = 500, threshold = 0.2 } = {}) {
-  const tauMin = Math.floor(RATE / fmax);
-  const tauMax = Math.ceil(RATE / fmin);
+function yin(samples, { rate = RATE, frame = 1024, hop = 160, fmin = 65, fmax = 500, threshold = 0.2 } = {}) {
+  const tauMin = Math.floor(rate / fmax);
+  const tauMax = Math.ceil(rate / fmin);
   const width = frame - tauMax;
   const cmnd = new Float32Array(tauMax + 1);
   const frames = [];
@@ -113,12 +113,27 @@ function yin(samples, { frame = 1024, hop = 160, fmin = 65, fmax = 500, threshol
     if (best > 0) {
       const [a, b, c] = [cmnd[best - 1], cmnd[best], cmnd[best + 1] ?? cmnd[best]];
       const shift = (a - c) / (2 * (a - 2 * b + c) || 1);
-      f0 = RATE / (best + (Math.abs(shift) < 1 ? shift : 0));
+      f0 = rate / (best + (Math.abs(shift) < 1 ? shift : 0));
       confidence = 1 - b;
     }
-    frames.push({ time: (start + frame / 2) / RATE, f0, confidence, rms: Math.sqrt(energy / frame) });
+    frames.push({ time: (start + frame / 2) / rate, f0, confidence, rms: Math.sqrt(energy / frame) });
   }
   return frames;
+}
+
+// Pitch of the latest stretch of microphone audio, for the live line.
+// Averages groups of samples down to ~16 kHz first so it's cheap enough to run every frame.
+function livePitch(buffer, sampleRate) {
+  const factor = Math.max(1, Math.round(sampleRate / RATE));
+  const n = Math.floor(buffer.length / factor);
+  const down = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    let sum = 0;
+    for (let k = 0; k < factor; k++) sum += buffer[i * factor + k];
+    down[i] = sum / factor;
+  }
+  const frame = Math.min(1024, n);
+  return yin(down.subarray(n - frame), { rate: sampleRate / factor, frame, hop: frame })[0];
 }
 
 const median = (values) => {
@@ -225,14 +240,14 @@ function classify(contour) {
 // ---------- Recording ----------
 
 class Recorder {
-  async start(onLevel) {
+  async start({ onLevel, onPitch } = {}) {
     const ctx = getContext();
     await ctx.resume();
     this.stream = await navigator.mediaDevices.getUserMedia({
       audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false },
     });
     const analyser = ctx.createAnalyser();
-    analyser.fftSize = 1024;
+    analyser.fftSize = 4096; // ~85 ms: enough for the pitch of a low voice
     ctx.createMediaStreamSource(this.stream).connect(analyser);
     this.media = new MediaRecorder(this.stream);
     const chunks = [];
@@ -249,13 +264,18 @@ class Recorder {
     let spoke = false;
     let quietSince = 0;
     const tick = () => {
-      if (this.media.state !== "recording") return;
+      if (this.media.state !== "recording") return clearInterval(timer);
       analyser.getFloatTimeDomainData(buffer);
-      const rms = Math.sqrt(buffer.reduce((s, v) => s + v * v, 0) / buffer.length);
+      const recent = buffer.subarray(buffer.length - 1024);
+      const rms = Math.sqrt(recent.reduce((s, v) => s + v * v, 0) / recent.length);
       const now = performance.now();
       if (now - began < 200) noise = Math.max(noise, rms);
       const loud = rms > Math.max(0.015, noise * 3);
       onLevel?.(Math.min(1, rms * 8));
+      if (onPitch) {
+        const { f0, confidence } = livePitch(buffer, ctx.sampleRate);
+        onPitch({ time: (now - began) / 1000, f0: loud && confidence > 0.6 ? f0 : 0 });
+      }
       if (loud) {
         spoke = true;
         quietSince = 0;
@@ -263,9 +283,11 @@ class Recorder {
         quietSince = now;
       }
       if (now - began > 3000 || (spoke && quietSince && now - quietSince > 400)) this.stop();
-      else requestAnimationFrame(tick);
     };
-    requestAnimationFrame(tick);
+    // A timer rather than requestAnimationFrame, so recording still stops if the
+    // page is hidden (animation frames pause in background tabs).
+    const timer = setInterval(tick, 25);
+    setTimeout(() => this.stop(), 3500);
     return this.done;
   }
 
@@ -407,8 +429,13 @@ class SayIt extends HTMLElement {
     this.recorder = new Recorder();
     this.recordButton.textContent = "Stop";
     this.setStatus(prompt);
+    this.live = { points: [], start: null, base: savedBaseline() };
+    this.mine.setAttribute("d", "");
     try {
-      return await this.recorder.start((level) => this.style.setProperty("--level", level.toFixed(2)));
+      return await this.recorder.start({
+        onLevel: (level) => this.style.setProperty("--level", level.toFixed(2)),
+        onPitch: (sample) => this.drawLive(sample),
+      });
     } catch (error) {
       const messages = {
         NotAllowedError: "Microphone access is blocked. Allow it in your browser's site settings.",
@@ -421,6 +448,45 @@ class SayIt extends HTMLElement {
       this.recordButton.textContent = "Record";
       this.style.setProperty("--level", "0");
     }
+  }
+
+  // Draw your pitch as you speak. The line starts when your voice starts and
+  // stretches across the chart; when you stop, check() replaces it with the
+  // aligned comparison.
+  drawLive({ time, f0 }) {
+    const live = this.live;
+    if (f0) {
+      const previous = live.points.findLast((p) => p.hz)?.hz;
+      let hz = f0;
+      if (previous) {
+        while (hz > previous * 1.6) hz /= 2;
+        while (hz < previous / 1.6) hz *= 2;
+      }
+      live.base ??= hz; // while calibrating, draw relative to where you started
+      live.start ??= time;
+      live.points.push({ time, hz });
+    } else if (live.start !== null) {
+      live.points.push({ time, hz: 0 }); // a gap in the line
+    }
+    if (live.start === null) return;
+
+    const voiced = live.points.filter((p) => p.hz);
+    const span = Math.max(0.6, voiced[voiced.length - 1].time - live.start);
+    let d = "";
+    let pen = false;
+    live.points.forEach((p, i) => {
+      if (!p.hz) {
+        pen = false;
+        return;
+      }
+      // Light smoothing: median of this point and its neighbours.
+      const nearby = live.points.slice(Math.max(0, i - 1), i + 2).filter((q) => q.hz).map((q) => q.hz);
+      const px = x(Math.min(1, (p.time - live.start) / span));
+      const py = y(toSemitones(median(nearby), live.base));
+      d += `${pen ? "L" : "M"}${px.toFixed(1)},${py.toFixed(1)} `;
+      pen = true;
+    });
+    this.mine.setAttribute("d", d);
   }
 
   async calibrate() {

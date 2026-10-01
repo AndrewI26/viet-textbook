@@ -28,6 +28,8 @@ The first `uv run audio` downloads the VieNeu-TTS voice model (~540 MB) into `~/
 
 Audio options: `uv run audio --force "má"` remakes one clip, `--all` remakes every clip (after changing the voice), `--voice "Kim Thanh"` picks a voice, `--prune` deletes unused clips, `--list-voices` lists the Southern voices, and `--compare` builds `dist/voice-test.html` to compare them.
 
+**Tone check:** the voice model sometimes says a tone wrong. Every one-syllable clip is analysed with the same pitch rules as the in-browser tone checker (`src/textbook/tones.py` mirrors `site/components/say-it.js`) and regenerated up to six times until its tone matches. `uv run audio --recheck` re-checks all existing clips and remakes any that sound wrong.
+
 ## Project layout
 
 ```

@@ -60,6 +60,13 @@ function toneOf(word) {
   return "ngang";
 }
 
+// A "stopped" syllable ends in -p, -t, -c or -ch. It can only carry sắc or nặng, and
+// it's short, so its tones look different (see classify).
+function isChecked(word) {
+  const plain = word.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d");
+  return /(p|t|c|ch)[.!?,]*$/.test(plain);
+}
+
 // ---------- Pitch tracking (YIN) ----------
 
 const RATE = 16000;
@@ -227,8 +234,16 @@ function measure(contour) {
 }
 
 // Decide which Southern tone a contour sounds like. Returns { tone, m }.
-function classify(contour) {
+// Keep in sync with src/textbook/tones.py, which checks the audio clips the same way.
+function classify(contour, checked = false) {
   const m = measure(contour);
+  if (checked) {
+    // Stopped syllables: sắc sits high and rises; nặng sits low and drops, with no rise.
+    let tone = "ngang";
+    if (m.average >= 1.5 || m.end - m.start >= 2.5) tone = "sac";
+    else if (m.average <= -0.5 || m.start - m.end >= 1.5) tone = "nang";
+    return { tone, m };
+  }
   let tone = "ngang";
   if (m.low <= -1.8 && m.rise >= 3.5 && m.end >= -1) tone = "hoi"; // dips low, then climbs well up
   else if (m.end - m.start >= 2.5) tone = "sac"; // climbs without a real dip
@@ -348,6 +363,7 @@ class SayIt extends HTMLElement {
     this.word = this.querySelector(".say");
     const text = this.word?.querySelector(".say-text")?.textContent.trim() ?? "";
     this.tone = toneOf(text);
+    this.checked = isChecked(text);
 
     const head = document.createElement("div");
     head.className = "sayit-head";
@@ -528,7 +544,7 @@ class SayIt extends HTMLElement {
     }
     const contour = resample(pitch.map((hz) => toSemitones(hz, savedBaseline())));
     this.mine.setAttribute("d", path(contour));
-    this.feedback(classify(contour));
+    this.feedback(classify(contour, this.checked));
   }
 
   feedback({ tone: heard }) {
@@ -536,7 +552,8 @@ class SayIt extends HTMLElement {
     if (heard === target) {
       this.setStatus(`That's ${TONES[this.tone].name}. Nice!`, "good");
     } else {
-      const advice = ADVICE[`${target}>${heard}`] ?? `That sounded more like ${TONES[heard].name}.`;
+      const stopped = this.checked && target === "nang" ? "Drop lower, and keep it short and heavy." : null;
+      const advice = stopped ?? ADVICE[`${target}>${heard}`] ?? `That sounded more like ${TONES[heard].name}.`;
       this.setStatus(advice, "bad");
     }
   }
@@ -545,4 +562,4 @@ class SayIt extends HTMLElement {
 customElements.define("say-it", SayIt);
 
 // For testing and for other components.
-window.ToneCheck = { pitchOf, decode, yin, voicedPitch, toSemitones, resample, classify, measure, toneOf, median, SHAPES };
+window.ToneCheck = { pitchOf, decode, yin, voicedPitch, toSemitones, resample, classify, measure, toneOf, isChecked, median, SHAPES };

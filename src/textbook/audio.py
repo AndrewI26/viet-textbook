@@ -8,6 +8,12 @@ Usage:
   uv run audio --voice "Thục Đoan"     use another voice for the clips made in this run
   uv run audio --list-voices           show the Southern voices
   uv run audio --compare               make dist/voice-test.html to compare Southern voices
+  uv run audio --recheck               check the tone of every existing one-syllable clip
+                                       and remake the ones that sound wrong
+
+Tone check: the voice model sometimes says a tone wrong (a nặng that rises like a
+hỏi, say). Every one-syllable clip is analysed with the same pitch rules as the
+in-browser tone checker, and regenerated (up to a few tries) until its tone matches.
 
 A real recording in recordings/ (named by the exact text, e.g. "má.mp3") always
 replaces the AI clip for that word.
@@ -24,11 +30,14 @@ from pathlib import Path
 import numpy as np
 import soundfile as sf
 
+from . import tones
 from .common import AUDIO, DIST, RECORDINGS, SITE, audio_filename, collect_texts, normalize
 
 DEFAULT_VOICE = "Kim Thanh"
 MODELS = Path.home() / ".cache" / "viet-textbook" / "models"
 RECORDING_TYPES = {".mp3", ".wav", ".m4a", ".aac", ".flac", ".ogg", ".aiff"}
+TONE_TRIES = 6  # attempts per one-syllable clip before keeping the closest
+BASELINE_WORDS = ["ma", "ba", "ta", "la", "na", "ca"]  # flat (ngang) words to learn the voice's level
 
 # Words used by --compare: the six tones, Southern sound changes, and a few phrases.
 COMPARE_SETS = {
@@ -158,13 +167,17 @@ def generate(voice: str, force: set[str], prune: bool, remake_all: bool = False)
         if remake_all or filename in forced or not out.exists():
             todo.append((filename, text))
 
+    unsure = []
     if todo:
         tts = load_tts()
         if voice not in tts._preset_voices:
             sys.exit(f"Unknown voice {voice!r}. Try: {', '.join(southern_voices(tts))}")
+        speaker = Speaker(tts, voice)
         for i, (filename, text) in enumerate(todo, 1):
-            print(f"  [{i}/{len(todo)}] {text}")
-            samples = tts.infer(text, voice=voice)
+            samples, note = speaker.say(text)
+            print(f"  [{i}/{len(todo)}] {text}{note}")
+            if "closest" in note:
+                unsure.append(text)
             write_mp3(samples, tts.sample_rate, AUDIO / filename)
 
     pruned = 0
@@ -182,8 +195,92 @@ def generate(voice: str, force: set[str], prune: bool, remake_all: bool = False)
     )
     if unused:
         print(f"{unused} clips in audio/ are no longer used (run with --prune to delete them).")
+    report_unsure(unsure)
     if todo or used_recordings:
         print("Run `uv run site` to rebuild the pages with the new audio.")
+
+
+class Speaker:
+    """Generates clips with one voice, checking the tone of one-syllable words."""
+
+    def __init__(self, tts, voice: str):
+        self.tts = tts
+        self.voice = voice
+        self._baseline = None
+
+    @property
+    def baseline(self) -> float:
+        """The voice's normal (ngang) pitch. Measured from the saved clips of flat words when
+        there are enough, so checks are repeatable; otherwise from freshly generated ones."""
+        if self._baseline is None:
+            saved = [AUDIO / audio_filename(word) for word in BASELINE_WORDS]
+            saved = [path for path in saved if path.exists()]
+            if len(saved) >= 3:
+                clips = [read_recording(path) for path in saved]
+            else:
+                clips = [(self.tts.infer(word, voice=self.voice), self.tts.sample_rate) for word in BASELINE_WORDS]
+            self._baseline = tones.baseline(clips)
+        return self._baseline
+
+    def say(self, text: str) -> tuple[np.ndarray, str]:
+        """Return (samples, note). The note says how the tone check went."""
+        if not tones.is_single_syllable(text):
+            return self.tts.infer(text, voice=self.voice), ""
+        expected = tones.tone_of(text)
+        closest, closest_distance, heard_last = None, float("inf"), ""
+        for attempt in range(1, TONE_TRIES + 1):
+            samples = self.tts.infer(text, voice=self.voice)
+            ok, heard, distance = tones.check(samples, self.tts.sample_rate, self.baseline, expected, tones.is_checked(text))
+            if ok:
+                return samples, "" if attempt == 1 else f"  (tone right on try {attempt})"
+            if distance < closest_distance:
+                closest, closest_distance, heard_last = samples, distance, heard
+        heard_name = tones.NAMES.get(heard_last, "unclear")
+        return closest, f"  ⚠ kept the closest of {TONE_TRIES} tries (sounds like {heard_name})"
+
+
+def report_unsure(unsure: list[str]) -> None:
+    if unsure:
+        print(f"{len(unsure)} clips never matched their tone: {', '.join(unsure)}")
+        print("Listen to them, and consider a real recording in recordings/ for any that sound wrong.")
+
+
+def recheck(voice: str) -> None:
+    """Check the tone of every existing one-syllable AI clip, and remake the wrong ones."""
+    texts = {}
+    for text in collect_texts():
+        texts.setdefault(audio_filename(text), text)
+    recorded = set()
+    if RECORDINGS.exists():
+        recorded = {audio_filename(p.stem) for p in RECORDINGS.iterdir() if p.suffix.lower() in RECORDING_TYPES}
+    candidates = [
+        (filename, text)
+        for filename, text in sorted(texts.items(), key=lambda item: item[1].lower())
+        if tones.is_single_syllable(text) and filename not in recorded and (AUDIO / filename).exists()
+    ]
+    tts = load_tts()
+    speaker = Speaker(tts, voice)
+    print(f"Checking {len(candidates)} one-syllable clips (voice level {speaker.baseline:.0f} Hz)…")
+    wrong = []
+    for filename, text in candidates:
+        samples, rate = read_recording(AUDIO / filename)
+        ok, heard, _ = tones.check(samples, rate, speaker.baseline, tones.tone_of(text), tones.is_checked(text))
+        if not ok:
+            wrong.append((filename, text, heard))
+    if not wrong:
+        print(f"All {len(candidates)} have the right tone.")
+    else:
+        print(f"{len(wrong)} sound wrong: " + ", ".join(f"{t} (heard {tones.NAMES.get(h, 'unclear')})" for _, t, h in wrong))
+    unsure = []
+    for i, (filename, text, _) in enumerate(wrong, 1):
+        samples, note = speaker.say(text)
+        print(f"  [{i}/{len(wrong)}] {text}{note or '  (fixed)'}")
+        if "closest" in note:
+            unsure.append(text)
+        write_mp3(samples, tts.sample_rate, AUDIO / filename)
+    report_unsure(unsure)
+    if wrong:
+        print("Run `uv run site` and `uv run anki` to use the new clips.")
 
 
 def compare(voices: list[str]) -> None:
@@ -261,6 +358,7 @@ def main() -> None:
     parser.add_argument("--prune", action="store_true", help="delete clips that nothing uses any more")
     parser.add_argument("--list-voices", action="store_true", help="list the Southern voices")
     parser.add_argument("--compare", nargs="*", metavar="VOICE", help="build dist/voice-test.html (all Southern voices by default)")
+    parser.add_argument("--recheck", action="store_true", help="check existing one-syllable clips' tones and remake wrong ones")
     args = parser.parse_args()
 
     if shutil.which("ffmpeg") is None:
@@ -271,6 +369,8 @@ def main() -> None:
         for name in southern_voices(tts):
             v = tts._preset_voices[name]
             print(f"  {name:<12} {v.get('gender', '')}")
+    elif args.recheck:
+        recheck(args.voice)
     elif args.compare is not None:
         if not (DIST / "index.html").exists():
             sys.exit("Build the site first: uv run site")

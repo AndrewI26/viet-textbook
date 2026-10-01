@@ -344,7 +344,7 @@ h1 {
   color: var(--muted);
 }
 
-.prose a:not(.btn):not(.card) {
+.prose a:not(.btn):not(.card):not(.chip):not(.toc-link) {
   color: var(--text-strong);
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -352,7 +352,7 @@ h1 {
   text-underline-offset: 3px;
   transition: text-decoration-color 0.15s ease;
 }
-.prose a:not(.btn):not(.card):hover { text-decoration-color: currentColor; }
+.prose a:not(.btn):not(.card):not(.chip):not(.toc-link):hover { text-decoration-color: currentColor; }
 
 .prose strong { font-weight: 600; color: var(--text-strong); }
 
@@ -606,15 +606,57 @@ h1 {
   color: var(--muted);
 }
 
-.prose .part-title {
-  margin: 40px 0 0;
+/* ---------- Table of contents (home page) ---------- */
+
+.toc { margin: 8px 0 0; }
+.prose .toc-part {
+  margin: 36px 0 4px;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
-.prose .part-title + .card-grid { margin-top: 12px; }
+.prose .toc-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+.prose .toc-chapter {
+  margin: 0;
+  padding: 18px 0 16px;
+  border-bottom: 1px solid var(--border);
+}
+.toc-title {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  color: var(--text-strong);
+  text-decoration: none;
+}
+.toc-num {
+  min-width: 24px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+.toc-name {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.toc-title:hover .toc-name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.prose .toc-sections {
+  margin: 6px 0 0 40px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.toc-sections .toc-link { color: var(--muted); text-decoration: none; white-space: nowrap; transition: color 0.15s ease; }
+.toc-sections .toc-link:hover { color: var(--text-strong); }
+.toc-sep { margin: 0 2px; color: var(--border-strong); }
 
 /* ---------- Callouts ---------- */
 
@@ -891,6 +933,59 @@ tone-chart {
 .tonechart-word.is-active { background: var(--surface-3); }
 .tonechart-word .caption { font-size: 13px; }
 
+/* ---------- Math (MathML, converted from LaTeX at build time) ---------- */
+
+math {
+  color: var(--text-strong);
+  font-family: "STIX Two Math", "Cambria Math", "Latin Modern Math", math;
+  font-size: 1.05em;
+}
+math mtext { font-family: var(--font-serif); }
+.math-display {
+  margin: 14px 0;
+  padding: 2px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin; /* only long formulas on narrow screens should ever scroll */
+}
+.math-display math { font-size: 1.12em; }
+/* Piecewise definitions (cases) read left to right. */
+.math-display mtd { text-align: left; padding: 0.15em 0.5em; }
+
+/* ---------- Cheat sheet ---------- */
+
+.sheet-card {
+  margin: 20px 0;
+  padding: 24px 28px;
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+.prose .sheet-card h3 { margin: 0 0 8px; font-size: 20px; }
+.sheet-card > :last-child { margin-bottom: 0; }
+.sheet-card .table-wrap { background: var(--bg); }
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  color: var(--text-strong);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+.chip:hover { background: var(--border-strong); }
+.chip::after { content: " →"; white-space: pre; }
+
 /* ---------- Pager ---------- */
 
 .pager {
@@ -982,11 +1077,13 @@ tone-chart {
 
 @media (max-width: 600px) {
   .topbar { padding: 0 16px; }
+  .prose .toc-sections { margin-left: 0; }
+  .toc-name { font-size: 21px; }
   .main { padding: 32px 16px 64px; }
   h1 { font-size: 40px; }
   .prose h2 { font-size: 30px; margin-top: 56px; }
   .prose th, .prose td { padding: 12px 14px; }
-  .tip, .south, .warn { padding: 20px; }
+  .tip, .south, .warn, .sheet-card { padding: 20px; }
   tone-drill, word-drill, minimal-pair, say-it, tone-chart { padding: 16px; }
   .card { padding: 24px; }
   .pager { flex-direction: column; }

@@ -701,6 +701,15 @@ wheels = [
 ]
 
 [[package]]
+name = "latex2mathml"
+version = "3.81.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/88/db/336c38300e44582752b95842b15a4be8fe656914cf5b02ad1bec53cebceb/latex2mathml-3.81.1.tar.gz", hash = "sha256:c95add0c0fcdecad2d70567e0643050d5ea1149fb2e98a5d5792fb1c8eea2ed5", size = 77475, upload-time = "2026-09-07T19:55:11.037Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/07/30/b8bcfb01a2514cb7554a048ed52883de276e66d757c3cc535a3c29eb9e98/latex2mathml-3.81.1-py3-none-any.whl", hash = "sha256:c337668441b71c819b6733905a8058ba9a9d767bae11a0c5fdacb3aff31361bd", size = 79159, upload-time = "2026-09-07T19:55:09.611Z" },
+]
+
+[[package]]
 name = "lazy-loader"
 version = "0.6"
 source = { registry = "https://pypi.org/simple" }
@@ -1935,6 +1944,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "genanki" },
+    { name = "latex2mathml" },
     { name = "markdown" },
     { name = "pyyaml" },
 ]
@@ -1947,6 +1957,7 @@ audio = [
 [package.metadata]
 requires-dist = [
     { name = "genanki", specifier = ">=0.13.1" },
+    { name = "latex2mathml", specifier = ">=3.81.1" },
     { name = "markdown", specifier = ">=3.7" },
     { name = "pyyaml", specifier = ">=6.0.3" },
 ]

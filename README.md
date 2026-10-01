@@ -19,7 +19,7 @@ The first `uv run audio` downloads the VieNeu-TTS voice model (~540 MB) into `~/
 |---|---|
 | `uv run dev` | Build the pages and serve them at http://localhost:8000 |
 | `uv run build` | Build everything into `dist/`: audio clips, Anki deck, pages |
-| `uv run site` | Rebuild only the pages (under a second); refresh the browser to see changes |
+| `uv run site` | Rebuild only the pages (under a second); refresh the browser to see changes. `--strict` also fails on missing audio or broken links |
 | `uv run serve` | Serve the already-built `dist/` folder |
 | `uv run audio` | Generate audio for any word that doesn't have a clip yet |
 | `uv run anki` | Build `anki/vietnamese-southern.apkg` from `cards/` |
@@ -35,7 +35,7 @@ Audio options: `uv run audio --force "má"` remakes one clip, `--all` remakes ev
 ```
 chapters/      the book: one .md (or .html) file per chapter, numbered
 cards/         flashcards: one .yaml file per chapter
-site/          page template, home page, style guide, CSS and JS
+site/          page template, home page, cheat sheet, style guide, CSS and JS
 site/components/  reusable widgets (<tone-drill>, <minimal-pair>)
 audio/         generated MP3s, committed to git
 recordings/    real recordings that replace the AI audio (optional)
@@ -62,6 +62,8 @@ The letter [[đ :: đờ]] is called "đờ".   <!-- shown :: spoken -->
 Say each word **before** you click it.
 </div>
 ```
+
+**Math:** write LaTeX between `$…$` (inline) or `$$…$$` (on its own line). It's converted to MathML when the site builds, so no math library is loaded in the browser. Use `\$` for a literal dollar sign. See `site/cheatsheet.md` for examples.
 
 Callout classes: `tip`, `south` (Southern pronunciation note), `warn`. Dialogue: a list inside `<div class="dialogue" markdown="1">`. Show/hide answers: `<details>` with a `<summary>`. See `site/styleguide.md` (served at `/styleguide.html`) for every component.
 

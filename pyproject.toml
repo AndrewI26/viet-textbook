@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "genanki>=0.13.1",
+    "latex2mathml>=3.81.1",
     "markdown>=3.7",
     "pyyaml>=6.0.3",
 ]

@@ -166,6 +166,20 @@ Southern speakers pronounce *hỏi* and *ngã* the same way, so in practice you 
 [[to]] [[tô]]
 </minimal-pair>
 
+### Tone checker
+
+Press **Record** and say the word. The first time, it asks for a flat "aaa" to learn your normal voice level. Your recording stays in your browser.
+
+<say-it>[[má]]</say-it>
+
+<say-it>[[mà]]</say-it>
+
+<say-it>[[mả]]</say-it>
+
+<say-it>[[mạ]]</say-it>
+
+<say-it>[[ma]]</say-it>
+
 ## Forms
 
 <input class="input" type="text" placeholder="Type what you hear…" aria-label="Type what you hear">

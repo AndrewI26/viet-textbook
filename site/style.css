@@ -755,7 +755,8 @@ h1 {
 /* ---------- Drill components (<tone-drill>, <minimal-pair>) ---------- */
 
 tone-drill,
-minimal-pair {
+minimal-pair,
+say-it {
   display: block;
   margin: 28px 0;
   padding: 24px;
@@ -813,6 +814,47 @@ minimal-pair .drill-cell .say { font-size: 36px; }
 .drill-status { font-size: 14px; color: var(--muted); }
 .drill-status.is-good { color: var(--good); }
 .drill-status.is-bad { color: var(--bad); }
+
+/* ---------- Tone checker (<say-it>) ---------- */
+
+.sayit-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+}
+.sayit-head .say { font-size: 32px; line-height: 1.2; }
+.sayit-tone { font-size: 15px; color: var(--muted); }
+.sayit-tone strong { color: var(--text-strong); font-weight: 500; }
+
+.sayit-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  background: var(--bg);
+}
+.sayit-grid { stroke: var(--border); stroke-width: 1; }
+.sayit-axis { fill: var(--muted); font-size: 12px; font-family: var(--font-sans); }
+.sayit-target-band { fill: none; stroke: var(--surface-3); stroke-width: 22; stroke-linecap: round; stroke-linejoin: round; }
+.sayit-target { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 5 6; stroke-linecap: round; }
+.sayit-mine { fill: none; stroke: var(--text-strong); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+/* The Record button glows with your voice level while listening. */
+say-it .btn-primary { box-shadow: 0 0 0 calc(var(--level, 0) * 8px) var(--surface-3); transition: box-shadow 0.08s linear, background-color 0.15s ease; }
+
+.sayit-foot { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.sayit-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--text-strong);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
 
 /* ---------- Pager ---------- */
 
@@ -910,7 +952,7 @@ minimal-pair .drill-cell .say { font-size: 36px; }
   .prose h2 { font-size: 30px; margin-top: 56px; }
   .prose th, .prose td { padding: 12px 14px; }
   .tip, .south, .warn { padding: 20px; }
-  tone-drill, minimal-pair { padding: 16px; }
+  tone-drill, minimal-pair, say-it { padding: 16px; }
   .card { padding: 24px; }
   .pager { flex-direction: column; }
   .pager-next { margin-left: 0; }

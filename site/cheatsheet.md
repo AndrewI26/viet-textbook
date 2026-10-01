@@ -66,7 +66,34 @@ thing: Xoài = mango | Trà = tea | Phở = pho | Sách = book
 amount: Mười = 10 | Hai mươi = 20 | Hăm lăm = 25 | Năm chục = 50 | Một trăm = 100
 </sentence-builder>
 
-<p class="chips"><a class="chip" href="chapters/07-numbers.html#7-6-how-much-is-it">7.6 How much is it?</a><a class="chip" href="chapters/07-numbers.html#7-7-dialogue-at-the-market">7.7 At the market</a></p>
+<p class="chips"><a class="chip" href="chapters/08-simple-sentences.html#8-1-word-order">8.1 Word order</a><a class="chip" href="chapters/07-numbers.html#7-6-how-much-is-it">7.6 How much is it?</a><a class="chip" href="chapters/07-numbers.html#7-7-dialogue-at-the-market">7.7 At the market</a></p>
+
+### No, and yes/no questions
+
+**không** before a word makes it negative. **không** at the end makes a question. Adjectives never take *là*.
+
+<sentence-builder vi="Tôi {how} {adj}." en="I'm {how} {adj}.">
+how: không = not | hơi = a bit | rất = very
+adj: mệt = tired | đói = hungry | vui = happy | bận = busy
+</sentence-builder>
+
+<sentence-builder vi="{you} {adj} không?" en="Are you {adj}? (to {you})">
+you: Anh = a man a bit older | Chị = a woman a bit older | Em = someone younger
+adj: khỏe = well | mệt = tired | đói = hungry
+</sentence-builder>
+
+<p class="chips"><a class="chip" href="chapters/08-simple-sentences.html#8-2-is-la-or-nothing-at-all">8.2 Là</a><a class="chip" href="chapters/08-simple-sentences.html#8-3-saying-no">8.3 Saying no</a><a class="chip" href="chapters/08-simple-sentences.html#8-4-yesno-questions">8.4 Questions</a></p>
+
+### Ordering
+
+**Cho** ("give") + *me* + the thing. *Me* is your word for yourself.
+
+<sentence-builder vi="Cho {me} một {item}." en="One {item}, please.">
+me: anh = a man, to a younger server | chị = a woman, to a younger server | con = to someone your parents' age
+item: ly cà phê sữa đá = iced milk coffee | ly trà đá = iced tea | tô phở = bowl of pho | ổ bánh mì = bánh mì
+</sentence-builder>
+
+<p class="chips"><a class="chip" href="chapters/08-simple-sentences.html#8-6-dialogue-at-a-cafe">8.6 At a café</a></p>
 
 ## Sounds
 

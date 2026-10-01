@@ -1,0 +1,86 @@
+# Flashcards for chapter 8. See README.md ("Writing flashcards") for the card types.
+
+chapter: 8
+title: Simple sentences
+
+sections:
+  - id: "8.1"
+    title: Word order
+    cards:
+      - { type: basic, front: "What's the basic Vietnamese word order?", back: "Like English: who + does + what. [[Tôi ăn phở.]]" }
+      - { type: basic, front: "Do Vietnamese verbs change for tense or person?", back: "Never. *ăn* = eat, eats, ate, eating." }
+      - { type: basic, front: "How do you show *when* something happens?", back: "Context, or a word before the verb: **đã** (already), **đang** (now), **sẽ** (will)" }
+      - { type: vocab, vi: "Tôi ăn phở.", en: "I eat pho." }
+      - { type: vocab, vi: "Tôi đã ăn.", en: "I ate." }
+      - { type: vocab, vi: "Tôi đang ăn.", en: "I'm eating." }
+      - { type: vocab, vi: "Tôi sẽ ăn.", en: "I'll eat." }
+      - { type: vocab, vi: "chúng tôi", en: we }
+
+  - id: "8.2"
+    title: "\"Is\": là, or nothing at all"
+    cards:
+      - { type: basic, front: "When do you use **là**?", back: "Only to link two nouns: [[Tôi là sinh viên.]]" }
+      - { type: basic, front: "How do you say \"I'm tired\"? Why no *là*?", back: "[[Tôi mệt.]] Adjectives follow directly, with no *là*." }
+      - { type: basic, front: "Three ways to say \"very good\" about food?", back: "[[Phở rất ngon.]] · [[Ngon quá!]] · ngon lắm (Southern)" }
+      - { type: vocab, vi: "Tôi là sinh viên.", en: "I'm a student." }
+      - { type: vocab, vi: "Đây là nhà tôi.", en: "This is my house." }
+      - { type: vocab, vi: "Phở ngon.", en: "The pho is delicious." }
+      - { type: vocab, vi: "Ngon quá!", en: "So delicious!" }
+      - { type: vocab, vi: "rất", en: very }
+      - { type: vocab, vi: "nóng", en: hot }
+
+  - id: "8.3"
+    title: Saying no
+    cards:
+      - { type: basic, front: "How do you make a verb or adjective negative?", back: "**không** before it: [[Tôi không hiểu.]]" }
+      - { type: basic, front: "How do you say \"is not\" before a noun?", back: "**không phải là**: [[Tôi không phải là người Mỹ.]]" }
+      - { type: basic, front: "How do you say \"not yet\"?", back: "**chưa**: [[Tôi chưa ăn.]]" }
+      - { type: vocab, vi: "Tôi không hiểu.", en: "I don't understand." }
+      - { type: vocab, vi: "Tôi không ăn thịt.", en: "I don't eat meat." }
+      - { type: vocab, vi: "Tôi chưa ăn.", en: "I haven't eaten yet." }
+      - { type: vocab, vi: "Tôi hơi mệt.", en: "I'm a bit tired." }
+      - { type: vocab, vi: "mệt", en: tired }
+      - { type: vocab, vi: "đói", en: hungry }
+      - { type: vocab, vi: "bận", en: busy }
+
+  - id: "8.4"
+    title: Yes/no questions
+    cards:
+      - { type: basic, front: "How do you turn a statement into a yes/no question?", back: "Add **không** at the end (often with **có** before the verb): [[Anh khỏe không?]]" }
+      - { type: basic, front: "How do you answer \"yes\" to *Anh có thích phở không?*", back: "Repeat the verb: [[Dạ, thích.]] (or *có*)" }
+      - { type: basic, front: "What does **chưa** at the end of a question ask?", back: "\"…yet?\" Answer **rồi** (already) or **chưa** (not yet)." }
+      - { type: basic, front: "How do you add \"…right?\" to a sentence?", back: "**phải không**: [[Chị là người Úc, phải không?]]" }
+      - { type: vocab, vi: "Anh khỏe không?", en: "Are you well? (to a man a bit older)" }
+      - { type: vocab, vi: "Chị có thích phở không?", en: "Do you like pho? (to a woman a bit older)" }
+      - { type: vocab, vi: "Anh ăn cơm chưa?", en: "Have you eaten yet? (also a greeting)" }
+      - { type: vocab, vi: "rồi", en: already }
+      - { type: listen, vi: "Em có mệt không?", answer: "Are you tired? (to someone younger)" }
+      - { type: listen, vi: "Dạ, rồi.", answer: "Yes, already." }
+      - { type: listen, vi: "Dạ, chưa.", answer: "Not yet." }
+
+  - id: "8.5"
+    title: Useful verbs
+    cards:
+      - { type: vocab, vi: "biết", en: to know }
+      - { type: vocab, vi: "hiểu", en: to understand }
+      - { type: vocab, vi: "Tôi không biết.", en: "I don't know." }
+      - { type: vocab, vi: "Ở đây có wifi không?", en: "Is there wifi here?" }
+      - { type: vocab, vi: "Tôi muốn uống nước.", en: "I want to drink some water." }
+      - { type: vocab, vi: "Tôi nói tiếng Việt một chút.", en: "I speak a little Vietnamese." }
+      - { type: vocab, vi: "Xin lỗi, tôi không hiểu.", en: "Sorry, I don't understand." }
+      - { type: vocab, vi: "Anh nói chậm được không?", en: "Could you speak slowly?" }
+      - { type: vocab, vi: "Chị làm gì?", en: "What do you do? (to a woman a bit older)" }
+
+  - id: "8.6"
+    title: "Dialogue: at a café"
+    cards:
+      - { type: basic, front: "What's the pattern for ordering?", back: "**Cho** + *me* + the thing: [[Cho anh một ly cà phê sữa đá.]]" }
+      - { type: basic, front: "What are the Southern words for a glass, a bowl and a loaf of bread?", back: "**ly**, **tô**, **ổ** (North: *cốc*, *bát*)" }
+      - { type: vocab, vi: "Cho anh một ly cà phê sữa đá.", en: "An iced milk coffee, please. (said by a man to a younger server)" }
+      - { type: vocab, vi: "Cho chị một tô phở.", en: "A bowl of pho, please. (said by a woman to a younger server)" }
+      - { type: vocab, vi: "Em ơi, tính tiền!", en: "Excuse me, the bill please!" }
+      - { type: vocab, vi: "cà phê sữa đá", en: "iced coffee with condensed milk" }
+      - { type: vocab, vi: "ly", en: "glass (Southern)" }
+      - { type: listen, vi: "Dạ, anh uống gì ạ?", answer: "What would you like to drink?" }
+      - { type: listen, vi: "Dạ. Anh có ăn gì không?", answer: "Anything to eat?" }
+      - { type: listen, vi: "Dạ, hai mươi lăm ngàn ạ.", answer: "That's 25,000." }

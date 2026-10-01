@@ -244,7 +244,9 @@ class Recorder {
     const ctx = getContext();
     await ctx.resume();
     this.stream = await navigator.mediaDevices.getUserMedia({
-      audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false },
+      // Automatic gain evens out quiet microphones (it changes volume, not pitch).
+      // Noise suppression stays off: it can smear the harmonics pitch tracking needs.
+      audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: true },
     });
     const analyser = ctx.createAnalyser();
     analyser.fftSize = 4096; // ~85 ms: enough for the pitch of a low voice
@@ -261,6 +263,7 @@ class Recorder {
     const buffer = new Float32Array(analyser.fftSize);
     const began = performance.now();
     let noise = 0;
+    let peak = 0;
     let spoke = false;
     let quietSince = 0;
     const tick = () => {
@@ -269,12 +272,15 @@ class Recorder {
       const recent = buffer.subarray(buffer.length - 1024);
       const rms = Math.sqrt(recent.reduce((s, v) => s + v * v, 0) / recent.length);
       const now = performance.now();
-      if (now - began < 200) noise = Math.max(noise, rms);
-      const loud = rms > Math.max(0.015, noise * 3);
-      onLevel?.(Math.min(1, rms * 8));
+      // "Speaking" is judged against the room's noise and against how loud you've been
+      // so far, so quiet microphones work too.
+      if (now - began < 150) noise = Math.min(0.01, Math.max(noise, rms));
+      peak = Math.max(peak, rms);
+      const loud = rms > Math.max(0.002, noise * 2.5, peak * 0.12);
+      onLevel?.(Math.min(1, rms / Math.max(peak, 0.02)));
       if (onPitch) {
         const { f0, confidence } = livePitch(buffer, ctx.sampleRate);
-        onPitch({ time: (now - began) / 1000, f0: loud && confidence > 0.6 ? f0 : 0 });
+        onPitch({ time: (now - began) / 1000, f0: loud && confidence > 0.5 ? f0 : 0 });
       }
       if (loud) {
         spoke = true;
@@ -473,18 +479,14 @@ class SayIt extends HTMLElement {
     const voiced = live.points.filter((p) => p.hz);
     const span = Math.max(0.6, voiced[voiced.length - 1].time - live.start);
     let d = "";
-    let pen = false;
-    live.points.forEach((p, i) => {
-      if (!p.hz) {
-        pen = false;
-        return;
-      }
+    voiced.forEach((p, i) => {
+      // Join across short gaps; lift the pen only for a real pause.
+      const pause = i === 0 || p.time - voiced[i - 1].time > 0.15;
       // Light smoothing: median of this point and its neighbours.
-      const nearby = live.points.slice(Math.max(0, i - 1), i + 2).filter((q) => q.hz).map((q) => q.hz);
+      const nearby = voiced.slice(Math.max(0, i - 1), i + 2).map((q) => q.hz);
       const px = x(Math.min(1, (p.time - live.start) / span));
       const py = y(toSemitones(median(nearby), live.base));
-      d += `${pen ? "L" : "M"}${px.toFixed(1)},${py.toFixed(1)} `;
-      pen = true;
+      d += `${pause ? "M" : "L"}${px.toFixed(1)},${py.toFixed(1)} `;
     });
     this.mine.setAttribute("d", d);
   }

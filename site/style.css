@@ -844,7 +844,7 @@ minimal-pair .drill-cell .say { font-size: 36px; }
 /* The Record button glows with your voice level while listening. */
 say-it .btn-primary { box-shadow: 0 0 0 calc(var(--level, 0) * 8px) var(--surface-3); transition: box-shadow 0.08s linear, background-color 0.15s ease; }
 
-.sayit-foot { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+say-it .sayit-foot { margin: 24px 0 0; font-size: 13px; color: var(--muted); }
 .sayit-link {
   padding: 0;
   border: 0;

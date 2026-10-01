@@ -1,0 +1,121 @@
+# Flashcards for chapter 3. See README.md ("Writing flashcards") for the card types.
+
+chapter: 3
+title: Tones
+
+sections:
+  - id: "3.1"
+    title: What is a tone?
+    cards:
+      - { type: basic, front: "What is a tone?", back: "The movement of your voice's pitch across a syllable: level, rising, falling, or dipping." }
+      - { type: basic, front: "Is there a correct note to hit for each tone?", back: "No. Tones are relative to *your* voice. What matters is the shape." }
+      - { type: basic, front: "How many tones does each syllable have?", back: "Exactly one, marked on its main vowel (or no mark for ngang)." }
+
+  - id: "3.2"
+    title: The five Southern tones
+    cards:
+      - { type: basic, front: "How many tones do you hear in the South, and why?", back: "Five. **Hỏi** and **ngã** are said the same way." }
+      - { type: basic, front: "Southern shape of **ngang** (no mark)?", back: "Flat, in the middle of your voice" }
+      - { type: basic, front: "Southern shape of **sắc** (á)?", back: "Rises from the middle to high" }
+      - { type: basic, front: "Southern shape of **huyền** (à)?", back: "Starts a little low and falls gently" }
+      - { type: basic, front: "Southern shape of **hỏi** (ả) and **ngã** (ã)?", back: "Dips down, then rises" }
+      - { type: basic, front: "Southern shape of **nặng** (ạ)?", back: "Low; dips and comes back up only a little" }
+      - { type: basic, front: "What do the tone names mean? sắc · hỏi · ngã · nặng", back: "sharp · to ask · to fall over · heavy" }
+      - { type: listen, vi: ma, answer: "ngang · ghost" }
+      - { type: listen, vi: má, answer: "sắc · mom" }
+      - { type: listen, vi: mà, answer: "huyền · but" }
+      - { type: listen, vi: mả, answer: "hỏi (or ngã, same in the South) · grave" }
+      - { type: listen, vi: mạ, answer: "nặng · rice seedling" }
+
+  - id: "3.3"
+    title: Each tone, step by step
+    cards:
+      - { type: basic, front: "The most common ngang mistake for English speakers?", back: "Letting it drop at the end. Keep it level until the sound stops." }
+      - { type: basic, front: "Which tone sounds like a surprised \"What?!\"", back: "**sắc**: [[có]]" }
+      - { type: basic, front: "Which tone is like the end of a calm English sentence?", back: "**huyền**: [[bà]]" }
+      - { type: basic, front: "Which tone sounds like a doubtful \"Huh?\"", back: "**hỏi** (and ngã, in the South): [[hỏi]]" }
+      - { type: basic, front: "How is **nặng** said in a word ending in -p, -t, -c or -ch?", back: "A short, low drop: [[học]]" }
+      - { type: basic, front: "Which tones can a word ending in -p, -t, -c or -ch have?", back: "Only **sắc** or **nặng**: [[hát]], [[hạt]]" }
+      - { type: basic, front: "How do hỏi and ngã sound in the North?", back: "Hỏi falls low; ngã rises with a catch in the throat. (In the South they're one dipping tone.)" }
+      - { type: read, vi: tên, tip: "ngang · name. Keep it level." }
+      - { type: read, vi: anh, tip: "ngang · older brother" }
+      - { type: read, vi: sáng, tip: "sắc · morning" }
+      - { type: read, vi: nói, tip: "sắc · to speak" }
+      - { type: read, vi: chào, tip: "huyền · hello" }
+      - { type: read, vi: người, tip: "huyền · person" }
+      - { type: read, vi: phải, tip: "hỏi · must; right" }
+      - { type: read, vi: của, tip: "hỏi · of" }
+      - { type: read, vi: Mỹ, tip: "ngã · America. Same shape as hỏi in the South." }
+      - { type: read, vi: chữ, tip: "ngã · letter, written word" }
+      - { type: read, vi: mẹ, tip: "nặng · mother" }
+      - { type: read, vi: một, tip: "nặng · one. Short, low drop." }
+      - { type: listen, vi: tên, answer: "ngang · name" }
+      - { type: listen, vi: sáng, answer: "sắc · morning" }
+      - { type: listen, vi: người, answer: "huyền · person" }
+      - { type: listen, vi: phải, answer: "hỏi · must; right" }
+      - { type: listen, vi: sữa, answer: "ngã (sounds like hỏi) · milk" }
+      - { type: listen, vi: chị, answer: "nặng · older sister" }
+
+  - id: "3.4"
+    title: Where the mark goes
+    cards:
+      - { type: basic, front: "Where does the tone mark go when one vowel has its own mark (ê, ô, ơ…)?", back: "On that vowel: tiếng, tuổi, người" }
+      - { type: basic, front: "Two vowels with nothing after them: which one gets the mark?", back: "The first: hai, mía, của" }
+      - { type: basic, front: "Vowels followed by a consonant: which one gets the mark?", back: "The last: toán, khoảng" }
+      - { type: basic, front: "Three vowels without vowel marks (oai, oay): which one gets the mark?", back: "The middle: ngoài, xoáy" }
+      - { type: basic, front: "In *qu* and *gi*, do the *u* and *i* count as vowels?", back: "No, they belong to the consonant: quả, giờ" }
+      - { type: basic, front: "Write *chao* with huyền", back: "**chào**" }
+      - { type: basic, front: "Write *tuôi* with hỏi", back: "**tuổi**" }
+      - { type: basic, front: "Write *nguơi* with huyền", back: "**người** (in ươ, the ơ takes the mark)" }
+      - { type: basic, front: "Write *hoan* with sắc", back: "**hoán**" }
+      - { type: basic, front: "Write *qua* with hỏi", back: "**quả**" }
+      - { type: basic, front: "*hòa* or *hoà*: which is right?", back: "Both. *hòa* is the traditional style, *hoà* the newer one." }
+
+  - id: "3.5"
+    title: Confusing pairs
+    cards:
+      - { type: listen, vi: tôi, answer: "ngang · I" }
+      - { type: listen, vi: tồi, answer: "huyền · lousy" }
+      - { type: listen, vi: có, answer: "sắc · to have" }
+      - { type: listen, vi: cỏ, answer: "hỏi · grass" }
+      - { type: listen, vi: bảo, answer: "hỏi · to tell" }
+      - { type: listen, vi: bạo, answer: "nặng · bold" }
+      - { type: listen, vi: bàn, answer: "huyền · table" }
+      - { type: listen, vi: bạn, answer: "nặng · friend" }
+      - { type: listen, vi: hát, answer: "sắc · to sing" }
+      - { type: listen, vi: hạt, answer: "nặng · seed" }
+      - { type: basic, front: "Sắc vs hỏi: what's the difference?", back: "Both end high, but **hỏi** dips first: [[có]] vs [[cỏ]]" }
+      - { type: basic, front: "Hỏi vs nặng: what's the difference?", back: "Both dip, but **hỏi** climbs back up high: [[bảo]] vs [[bạo]]" }
+
+  - id: "3.6"
+    title: Tone drills
+    cards:
+      - { type: listen, vi: la, answer: "ngang · to shout" }
+      - { type: listen, vi: lá, answer: "sắc · leaf" }
+      - { type: listen, vi: là, answer: "huyền · to be" }
+      - { type: listen, vi: lả, answer: "hỏi · limp" }
+      - { type: listen, vi: lạ, answer: "nặng · strange" }
+      - { type: read, vi: la, tip: "ngang · to shout" }
+      - { type: read, vi: lá, tip: "sắc · leaf" }
+      - { type: read, vi: là, tip: "huyền · to be" }
+      - { type: read, vi: lả, tip: "hỏi · limp" }
+      - { type: read, vi: lã, tip: "ngã · plain water" }
+      - { type: read, vi: lạ, tip: "nặng · strange" }
+
+  - title: Vocabulary
+    cards:
+      - { type: vocab, vi: là, en: to be }
+      - { type: vocab, vi: lạ, en: strange }
+      - { type: vocab, vi: lá, en: leaf }
+      - { type: vocab, vi: cỏ, en: grass }
+      - { type: vocab, vi: bàn, en: table }
+      - { type: vocab, vi: bạn, en: friend }
+      - { type: vocab, vi: hát, en: to sing }
+      - { type: vocab, vi: một, en: one }
+      - { type: vocab, vi: học, en: to study }
+      - { type: vocab, vi: sáng, en: morning }
+      - { type: vocab, vi: tốt, en: good }
+      - { type: vocab, vi: phải, en: "must; right" }
+      - { type: vocab, vi: chữ, en: "letter, written word" }
+      - { type: vocab, vi: hỏi, en: to ask }
+      - { type: vocab, vi: chào, en: hello }

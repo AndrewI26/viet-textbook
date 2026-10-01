@@ -341,13 +341,21 @@ function saveBaseline(hz) {
 // ---------- The element ----------
 
 const SVG = "http://www.w3.org/2000/svg";
+// Chart geometry: time 0–1 across, semitones (±range) up and down.
+function scaleFor(chart) {
+  const x = (t) => chart.left + t * (chart.width - chart.left - chart.right);
+  const y = (st) => {
+    const clamped = Math.max(-chart.range, Math.min(chart.range, st));
+    return chart.top + ((chart.range - clamped) / (2 * chart.range)) * (chart.height - chart.top - chart.bottom);
+  };
+  const path = (values) => values.map((v, i) => `${i ? "L" : "M"}${x(i / (values.length - 1)).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+  return { x, y, path };
+}
+
+// The tone checker needs room for big rises; the tone chart only draws the shapes.
 const CHART = { width: 600, height: 190, left: 60, right: 16, top: 14, bottom: 14, range: 11 };
-const x = (t) => CHART.left + t * (CHART.width - CHART.left - CHART.right);
-const y = (st) => {
-  const clamped = Math.max(-CHART.range, Math.min(CHART.range, st));
-  return CHART.top + ((CHART.range - clamped) / (2 * CHART.range)) * (CHART.height - CHART.top - CHART.bottom);
-};
-const path = (values) => values.map((v, i) => `${i ? "L" : "M"}${x(i / (values.length - 1)).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+const TONE_CHART = { width: 600, height: 250, left: 60, right: 16, top: 24, bottom: 24, range: 7 };
+const { x, y, path } = scaleFor(CHART);
 
 function svg(tag, attrs, parent) {
   const node = document.createElementNS(SVG, tag);
@@ -560,6 +568,75 @@ class SayIt extends HTMLElement {
 }
 
 customElements.define("say-it", SayIt);
+
+// <tone-chart>: every Southern tone shape on one chart.
+//
+//   <tone-chart>[[ma]] [[má]] [[mà]] [[mả]] [[mạ]]</tone-chart>
+//
+// Each word's tone mark picks its curve. Clicking a word plays it and highlights
+// its curve. Hỏi and ngã share one curve in the South.
+
+// Where to put each curve's label: [time, semitones, anchor].
+const CHART_LABELS = {
+  sac: [1, 6, "end"],
+  hoi: [1, 3.5, "end"],
+  ngang: [0.32, 0.3, "middle"],
+  nang: [0.6, -3.6, "middle"],
+  huyen: [1, -4.2, "end"],
+};
+
+class ToneChart extends HTMLElement {
+  connectedCallback() {
+    if (this.built) return;
+    this.built = true;
+    const words = [...this.querySelectorAll(".say")];
+
+    const { x, y, path } = scaleFor(TONE_CHART);
+    this.chart = svg("svg", { class: "sayit-chart tonechart", viewBox: `0 0 ${TONE_CHART.width} ${TONE_CHART.height}`, role: "img", "aria-label": "Pitch shapes of the Southern tones" });
+    for (const [st, name] of [[5, "high"], [0, "mid"], [-5, "low"]]) {
+      svg("line", { class: "sayit-grid", x1: TONE_CHART.left, x2: TONE_CHART.width - TONE_CHART.right, y1: y(st), y2: y(st) }, this.chart);
+      const label = svg("text", { class: "sayit-axis", x: TONE_CHART.left - 18, y: y(st) + 4, "text-anchor": "end" }, this.chart);
+      label.textContent = name;
+    }
+
+    const row = document.createElement("div");
+    row.className = "tonechart-words";
+    this.parts = {};
+    for (const word of words) {
+      const written = toneOf(word.querySelector(".say-text")?.textContent ?? "");
+      const tone = written === "nga" ? "hoi" : written;
+      if (!this.parts[tone]) {
+        const line = svg("path", { class: "tonechart-line", d: path(shapePoints(SHAPES[tone])) }, this.chart);
+        const [t, st, anchor] = CHART_LABELS[tone];
+        const label = svg("text", { class: "tonechart-label", x: x(t) - (anchor === "end" ? 4 : 0), y: y(st) + (st < 0 ? 18 : -9), "text-anchor": anchor }, this.chart);
+        label.textContent = tone === "hoi" ? "hỏi / ngã" : TONES[tone].name.toLowerCase();
+        this.parts[tone] = { line, label, cells: [] };
+      }
+      const cell = document.createElement("div");
+      cell.className = "tonechart-word";
+      const caption = document.createElement("span");
+      caption.className = "caption";
+      caption.textContent = TONES[written].name;
+      cell.append(word, caption);
+      cell.addEventListener("click", () => this.highlight(tone));
+      cell.addEventListener("mouseenter", () => this.highlight(tone));
+      this.parts[tone].cells.push(cell);
+      row.append(cell);
+    }
+    this.replaceChildren(this.chart, row);
+  }
+
+  highlight(tone) {
+    for (const [name, part] of Object.entries(this.parts)) {
+      const on = name === tone;
+      part.line.classList.toggle("is-active", on);
+      part.label.classList.toggle("is-active", on);
+      part.cells.forEach((c) => c.classList.toggle("is-active", on));
+    }
+  }
+}
+
+customElements.define("tone-chart", ToneChart);
 
 // For testing and for other components.
 window.ToneCheck = { pitchOf, decode, yin, voicedPitch, toSemitones, resample, classify, measure, toneOf, isChecked, median, SHAPES };

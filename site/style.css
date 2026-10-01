@@ -857,6 +857,30 @@ say-it .sayit-foot { margin: 24px 0 0; font-size: 13px; color: var(--muted); }
   cursor: pointer;
 }
 
+/* ---------- Tone chart (<tone-chart>) ---------- */
+
+tone-chart {
+  display: block;
+  margin: 28px 0;
+  padding: 24px;
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+.tonechart-line { fill: none; stroke: var(--border-strong); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.15s ease, stroke-width 0.15s ease; }
+.tonechart-line.is-active { stroke: var(--text-strong); stroke-width: 4.5; }
+.tonechart-label { fill: var(--muted); font-size: 13px; font-family: var(--font-sans); font-weight: 500; }
+.tonechart-label.is-active { fill: var(--text-strong); }
+.tonechart-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 16px;
+  font-size: 22px;
+}
+.tonechart-word { display: flex; flex-direction: column; gap: 2px; padding: 6px 10px; border-radius: 14px; cursor: pointer; }
+.tonechart-word.is-active { background: var(--surface-3); }
+.tonechart-word .caption { font-size: 13px; }
+
 /* ---------- Pager ---------- */
 
 .pager {
@@ -953,7 +977,7 @@ say-it .sayit-foot { margin: 24px 0 0; font-size: 13px; color: var(--muted); }
   .prose h2 { font-size: 30px; margin-top: 56px; }
   .prose th, .prose td { padding: 12px 14px; }
   .tip, .south, .warn { padding: 20px; }
-  tone-drill, word-drill, minimal-pair, say-it { padding: 16px; }
+  tone-drill, word-drill, minimal-pair, say-it, tone-chart { padding: 16px; }
   .card { padding: 24px; }
   .pager { flex-direction: column; }
   .pager-next { margin-left: 0; }

@@ -8,6 +8,10 @@
 //   [[ma]] [[má]]
 //   </minimal-pair>
 //
+//   <word-drill labels="a, ă, â">      (same grid, for vowel and consonant sets)
+//   [[an]] [[ăn]] [[ân]]
+//   </word-drill>
+//
 // "Play all" plays every word in order. "Quiz me" plays a random word and
 // the reader clicks the one they heard.
 
@@ -152,5 +156,8 @@ class MinimalPair extends ToneDrill {
   prompt = "Which did you hear?";
 }
 
+class WordDrill extends ToneDrill {}
+
 customElements.define("tone-drill", ToneDrill);
 customElements.define("minimal-pair", MinimalPair);
+customElements.define("word-drill", WordDrill);

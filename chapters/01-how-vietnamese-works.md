@@ -160,15 +160,27 @@ Your ear learns by comparing your guess to the real sound, so every time you mee
 
 Some more habits that help:
 
-- **Record yourself** on your phone and compare it with the clickable audio.
 - **Practise in pairs.** Words that differ by one sound or one tone train your ear fastest.
 - **Do your flashcards every day.** Ten minutes daily works better than an hour once a week.
+- **Check your tones.** Some exercises have a **Record** button. It listens to you, draws your pitch as you speak, and tells you whether your tone matches.
 
 Try the "Quiz me" button below. It plays one of the six words and you pick which one you heard.
 
 <tone-drill labels="ngang, sắc, huyền, hỏi, ngã, nặng">
 [[ba]] [[bá]] [[bà]] [[bả]] [[bã]] [[bạ]]
 </tone-drill>
+
+Now say them yourself. The first time, it asks you to say a flat "aaa" so it can learn your voice. Your recording stays in your browser.
+
+<say-it>[[ba]]</say-it>
+
+<say-it>[[bá]]</say-it>
+
+<say-it>[[bà]]</say-it>
+
+<div class="tip" markdown="1">
+Don't worry if the checker isn't happy yet. Chapter 3 teaches each tone step by step. For now, notice how your voice moves: up, down, or flat.
+</div>
 
 ## Vocabulary
 
@@ -187,6 +199,6 @@ Try the "Quiz me" button below. It plays one of the six words and you pick which
 | [[cơm]] | cooked rice |
 | [[vui]] | happy |
 
-## Practice
+## Flashcards
 
 Open the Anki deck and study **Vietnamese (Southern) › 01 How Vietnamese works**. There's a subdeck for each section, so you can focus on one part at a time.

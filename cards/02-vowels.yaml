@@ -1,0 +1,137 @@
+# Flashcards for chapter 2. See README.md ("Writing flashcards") for the card types.
+
+chapter: 2
+title: Vowels
+
+sections:
+  - id: "2.1"
+    title: The single vowels
+    cards:
+      - { type: basic, front: "What makes Vietnamese vowels \"pure\"?", back: "The mouth holds one shape. No glide at the end, like the *w* in English *no-w*." }
+      - { type: basic, front: "Which two vowel letters sound the same?", back: "**i** and **y**" }
+      - { type: basic, front: "Which two vowels are always short and never end a syllable?", back: "**ă** and **â**" }
+      - { type: basic, front: "Which vowel is like \"aw\" in *law*, with loosely rounded lips?", back: "**o**: [[to]]" }
+      - { type: basic, front: "Which vowel is \"oh\" with lips pushed forward and no glide?", back: "**ô**: [[tô]]" }
+      - { type: basic, front: "Which vowel is a relaxed \"uh\", like *her* without the r?", back: "**ơ**: [[tơ]]" }
+      - { type: basic, front: "Say \"oo\", then spread your lips into a smile. Which vowel is that?", back: "**ư**: [[tư]]" }
+      - { type: listen, vi: ta, answer: "**a**: long, open \"ah\"" }
+      - { type: listen, vi: tê, answer: "**ê**: \"ay\" with no glide" }
+      - { type: listen, vi: to, answer: "**o**: \"aw\" · big" }
+      - { type: listen, vi: tô, answer: "**ô**: \"oh\", lips forward · bowl" }
+      - { type: listen, vi: tơ, answer: "**ơ**: relaxed \"uh\" · silk" }
+      - { type: listen, vi: tu, answer: "**u**: rounded \"oo\"" }
+      - { type: listen, vi: tư, answer: "**ư**: \"oo\" with spread lips" }
+
+  - id: "2.2"
+    title: Vowels that are easy to mix up
+    cards:
+      - { type: basic, front: "What's the difference between **a** and **ă**?", back: "Same sound, but **ă** is short." }
+      - { type: basic, front: "What's the difference between **e** and **ê**?", back: "**e** is open (jaw low, like *bed*). **ê** is more closed (like *say*)." }
+      - { type: listen, vi: cát, answer: "**a**: long · sand" }
+      - { type: listen, vi: cắt, answer: "**ă**: short · to cut" }
+      - { type: listen, vi: cất, answer: "**â**: short \"uh\" · to put away" }
+      - { type: listen, vi: mặn, answer: "**ă** · salty" }
+      - { type: listen, vi: mận, answer: "**â** · wax apple (Southern)" }
+      - { type: listen, vi: hét, answer: "**e** · to scream" }
+      - { type: listen, vi: hết, answer: "**ê** · finished, all gone" }
+      - { type: listen, vi: thu, answer: "**u** · autumn" }
+      - { type: listen, vi: thư, answer: "**ư** · letter" }
+      - { type: listen, vi: chú, answer: "**u** · uncle" }
+      - { type: listen, vi: chứ, answer: "**ư** · of course" }
+      - { type: read, vi: mặn, tip: "salty" }
+      - { type: read, vi: hết, tip: "finished, all gone" }
+      - { type: read, vi: êm, tip: "soft, smooth" }
+      - { type: read, vi: tô, tip: "bowl. Lips forward, no glide." }
+
+  - id: "2.3"
+    title: Two vowels together
+    cards:
+      - { type: basic, front: "What's the difference between **ai** and **ay**?", back: "In **ay**, the *a* is short: [[tai]] vs [[tay]]" }
+      - { type: basic, front: "What's the difference between **ao** and **au**?", back: "In **au**, the *a* is short and closes quickly to *u*: [[cháo]] vs [[cháu]]" }
+      - { type: basic, front: "In **oa**, **oe**, **uy** and **uê**, how is the first vowel said?", back: "As a quick \"w\": [[hoa]], [[khỏe]], [[quê]]" }
+      - { type: listen, vi: tai, answer: "**ai** · ear" }
+      - { type: listen, vi: tay, answer: "**ay** · hand" }
+      - { type: listen, vi: cháo, answer: "**ao** · rice porridge" }
+      - { type: listen, vi: cháu, answer: "**au** · grandchild" }
+      - { type: listen, vi: nói, answer: "**oi** · to speak" }
+      - { type: listen, vi: nối, answer: "**ôi** · to connect" }
+      - { type: listen, vi: nơi, answer: "**ơi** · place" }
+      - { type: read, vi: chào, tip: "hello. **ao** = \"ow\"" }
+      - { type: read, vi: đâu, tip: "where" }
+      - { type: read, vi: đây, tip: "here" }
+      - { type: read, vi: mèo, tip: "cat" }
+      - { type: read, vi: nếu, tip: "if" }
+      - { type: read, vi: vui, tip: "happy" }
+      - { type: read, vi: khỏe, tip: "healthy, well. **oe** = \"weh\"" }
+
+  - id: "2.4"
+    title: One sound, two spellings
+    cards:
+      - { type: basic, front: "When is \"ee-uh\" spelled **ia**, and when **iê**?", back: "**ia** when nothing follows ([[mía]]). **iê** when a consonant follows ([[tiền]])." }
+      - { type: basic, front: "When is \"ee-uh\" spelled **yê**?", back: "When nothing comes before it: [[yêu]], [[yên]]" }
+      - { type: basic, front: "When is \"oo-uh\" spelled **ua**, and when **uô**?", back: "**ua** when nothing follows ([[mua]]). **uô** when a consonant follows ([[muốn]])." }
+      - { type: basic, front: "When is \"ư-uh\" spelled **ưa**, and when **ươ**?", back: "**ưa** when nothing follows ([[mưa]]). **ươ** when a consonant follows ([[nước]])." }
+      - { type: basic, front: "How do many Southerners say [[muốn]] (to want)?", back: "Like \"mún\"" }
+      - { type: listen, vi: mua, answer: "**ua** · to buy" }
+      - { type: listen, vi: mưa, answer: "**ưa** · rain" }
+      - { type: read, vi: mía, tip: "sugarcane. One quick syllable, not \"mee-ah\"." }
+      - { type: read, vi: tiền, tip: "money" }
+      - { type: read, vi: của, tip: "of, belonging to" }
+      - { type: read, vi: uống, tip: "to drink" }
+      - { type: read, vi: sữa, tip: "milk" }
+      - { type: read, vi: nước, tip: "water; country" }
+      - { type: read, vi: đường, tip: "road; sugar" }
+      - { type: read, vi: yêu, tip: "to love" }
+
+  - id: "2.5"
+    title: Three vowels together
+    cards:
+      - { type: basic, front: "How do you break down **ươi**?", back: "**ươ** + **i**, as in [[người]]" }
+      - { type: basic, front: "How do many Southerners say [[người]]?", back: "Like \"ngừi\"" }
+      - { type: basic, front: "How do many Southerners say [[chuối]]?", back: "Like \"chúi\"" }
+      - { type: basic, front: "How do many Southerners say [[nhiều]]?", back: "Like \"nhìu\"" }
+      - { type: basic, front: "Which word is the only one spelled **uya**?", back: "[[khuya]]: late at night" }
+      - { type: read, vi: nhiều, tip: "much, many" }
+      - { type: read, vi: chiều, tip: "afternoon" }
+      - { type: read, vi: xoài, tip: "mango" }
+      - { type: read, vi: xoay, tip: "to turn" }
+      - { type: read, vi: tuổi, tip: "age" }
+      - { type: read, vi: chuối, tip: "banana" }
+      - { type: read, vi: chuyện, tip: "story" }
+      - { type: read, vi: người, tip: "person" }
+      - { type: read, vi: mười, tip: "ten" }
+      - { type: read, vi: rượu, tip: "alcohol" }
+
+  - id: "2.6"
+    title: Practice
+    cards:
+      - { type: listen, vi: an, answer: "**a** · peace" }
+      - { type: listen, vi: ăn, answer: "**ă** · to eat" }
+      - { type: listen, vi: đi, answer: "**i** · to go" }
+      - { type: listen, vi: đê, answer: "**ê** · dike" }
+      - { type: listen, vi: đe, answer: "**e** · anvil" }
+      - { type: listen, vi: bú, answer: "**u** · to suckle" }
+      - { type: listen, vi: bố, answer: "**ô** · dad" }
+      - { type: listen, vi: bó, answer: "**o** · bundle" }
+      - { type: listen, vi: chia, answer: "**ia** · to share" }
+      - { type: listen, vi: chua, answer: "**ua** · sour" }
+      - { type: listen, vi: chưa, answer: "**ưa** · not yet" }
+
+  - title: Vocabulary
+    cards:
+      - { type: vocab, vi: hai, en: two }
+      - { type: vocab, vi: tay, en: hand }
+      - { type: vocab, vi: đâu, en: where }
+      - { type: vocab, vi: đây, en: here }
+      - { type: vocab, vi: nói, en: to speak }
+      - { type: vocab, vi: tui, en: "I, me (Southern, casual)" }
+      - { type: vocab, vi: khỏe, en: "healthy, well" }
+      - { type: vocab, vi: mua, en: to buy }
+      - { type: vocab, vi: mưa, en: rain }
+      - { type: vocab, vi: uống, en: to drink }
+      - { type: vocab, vi: nước, en: water }
+      - { type: vocab, vi: người, en: person }
+      - { type: vocab, vi: yêu, en: to love }
+      - { type: vocab, vi: nhiều, en: "much, many" }
+      - { type: vocab, vi: tuổi, en: age }
+      - { type: vocab, vi: muốn, en: to want }

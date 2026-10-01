@@ -1,0 +1,103 @@
+# Flashcards for chapter 4. See README.md ("Writing flashcards") for the card types.
+
+chapter: 4
+title: Consonants
+
+sections:
+  - id: "4.1"
+    title: Sounds you already know
+    cards:
+      - { type: basic, front: "How is **ph** said?", back: "Like English *f*: [[phở]]" }
+      - { type: basic, front: "How is **x** said?", back: "Like English *s*: [[xin]]" }
+      - { type: basic, front: "How is Vietnamese **g** different from English *g*?", back: "Softer: the back of the tongue doesn't quite close. [[gà]]" }
+      - { type: read, vi: phở, tip: "noodle soup. **ph** = f" }
+      - { type: read, vi: xin, tip: "please. **x** = s" }
+      - { type: read, vi: bà, tip: "grandmother" }
+      - { type: read, vi: năm, tip: "five" }
+      - { type: read, vi: gà, tip: "chicken. A soft g." }
+
+  - id: "4.2"
+    title: Sounds that work differently
+    cards:
+      - { type: basic, front: "What's the difference between **t** and **th**?", back: "**t** has no puff of air (like *stop*); **th** has a puff (like *top*)." }
+      - { type: basic, front: "Is Vietnamese **th** like English *th* in *think*?", back: "No. It's a *t* with a puff of air." }
+      - { type: basic, front: "What's the difference between **c/k** and **kh**?", back: "**c/k** is a *k* with no puff (like *skin*). **kh** is soft and breathy, like Scottish *loch*." }
+      - { type: basic, front: "How do you make **nh**?", back: "Tongue flat against the roof of your mouth, then *n*. Like the *ñ* in *señor*." }
+      - { type: basic, front: "A trick for **ng** at the start of a word?", back: "Say \"singing\" and drop the *si-*: \"nging\". [[ngủ]]" }
+      - { type: basic, front: "How are **tr** and **ch** different in the South?", back: "**ch** is soft, with no puff. **tr** has the tongue tip curled back and sounds harder." }
+      - { type: basic, front: "What's the difference between **đ** and **d**?", back: "**đ** is a firm *d*. **d** sounds like *y* in the South." }
+      - { type: listen, vi: tôi, answer: "**t** (no puff) · I" }
+      - { type: listen, vi: thôi, answer: "**th** (puff) · enough" }
+      - { type: listen, vi: tu, answer: "**t** · to practise (religion)" }
+      - { type: listen, vi: thu, answer: "**th** · autumn" }
+      - { type: listen, vi: cá, answer: "**c** · fish" }
+      - { type: listen, vi: khá, answer: "**kh** · quite" }
+      - { type: listen, vi: cô, answer: "**c** · aunt" }
+      - { type: listen, vi: khô, answer: "**kh** · dry" }
+      - { type: listen, vi: no, answer: "**n** · full" }
+      - { type: listen, vi: nho, answer: "**nh** · grape" }
+      - { type: listen, vi: nhà, answer: "**nh** · house" }
+      - { type: listen, vi: ngà, answer: "**ng** · ivory" }
+      - { type: listen, vi: tre, answer: "**tr** · bamboo" }
+      - { type: listen, vi: che, answer: "**ch** · to cover" }
+      - { type: listen, vi: đi, answer: "**đ** · to go" }
+      - { type: listen, vi: dì, answer: "**d** (sounds like y) · aunt" }
+
+  - id: "4.3"
+    title: Southern consonants
+    cards:
+      - { type: basic, front: "In the South, which three letters can all sound like *y*?", back: "**d**, **gi** and **v**: [[dạ]], [[gì]], [[vui]]" }
+      - { type: basic, front: "How is **qu** said in the South?", back: "Like *w*: [[quá]] sounds like \"wá\"" }
+      - { type: basic, front: "How is **r** said in the South (and in the North)?", back: "South: an *r* sound. North: like *z*. [[rau]]" }
+      - { type: basic, front: "How is **s** said in careful Southern speech?", back: "*sh*-like, different from **x** (*s*). In relaxed speech, many say both like *s*." }
+      - { type: basic, front: "How is **tr** said in the North?", back: "The same as **ch**. The South keeps them apart." }
+      - { type: listen, vi: dạ, answer: "**d** = y · yes (polite)" }
+      - { type: listen, vi: gì, answer: "**gi** = y · what" }
+      - { type: listen, vi: già, answer: "**gi** = y · old" }
+      - { type: listen, vi: về, answer: "**v** (y or soft v) · to go home" }
+      - { type: listen, vi: quá, answer: "**qu** = w · very" }
+      - { type: listen, vi: xinh, answer: "**x** · pretty" }
+      - { type: listen, vi: sinh, answer: "**s** · to be born" }
+      - { type: read, vi: sáu, tip: "six" }
+      - { type: read, vi: trà, tip: "tea. Tongue tip curled back." }
+
+  - id: "4.4"
+    title: Spelling rules
+    cards:
+      - { type: basic, front: "Before which vowels do you write **k**, **gh** and **ngh**?", back: "**i, e, ê**" }
+      - { type: basic, front: "Which letter always comes with **u**?", back: "**q** (qu): quá, quê" }
+      - { type: basic, front: "*_e* (to listen): **ng** or **ngh**?", back: "**nghe**" }
+      - { type: basic, front: "*_ủ* (to sleep): **ng** or **ngh**?", back: "**ngủ**" }
+      - { type: basic, front: "*_ế* (chair): **g** or **gh**?", back: "**ghế**" }
+      - { type: basic, front: "*_ỗ* (wood): **g** or **gh**?", back: "**gỗ**" }
+      - { type: basic, front: "*_em* (ice cream): **c** or **k**?", back: "**kem**" }
+      - { type: basic, front: "*_á* (fish): **c** or **k**?", back: "**cá**" }
+
+  - id: "4.5"
+    title: Practice
+    cards:
+      - { type: listen, vi: đỗ, answer: "**đ** · to pass (a test)" }
+      - { type: listen, vi: dỗ, answer: "**d** · to soothe" }
+      - { type: listen, vi: gỗ, answer: "**g** · wood" }
+      - { type: listen, vi: hổ, answer: "**h** · tiger" }
+      - { type: listen, vi: nói, answer: "**n** · to speak" }
+      - { type: listen, vi: nhói, answer: "**nh** · a sharp pain" }
+      - { type: listen, vi: ngói, answer: "**ng** · roof tile" }
+
+  - title: Vocabulary
+    cards:
+      - { type: vocab, vi: phở, en: noodle soup }
+      - { type: vocab, vi: xin, en: please (formal) }
+      - { type: vocab, vi: thôi, en: "enough; to stop" }
+      - { type: vocab, vi: khá, en: "quite, fairly" }
+      - { type: vocab, vi: không, en: "no, not" }
+      - { type: vocab, vi: nhà, en: "house, home" }
+      - { type: vocab, vi: nhỏ, en: small }
+      - { type: vocab, vi: ngủ, en: to sleep }
+      - { type: vocab, vi: nghe, en: "to listen, to hear" }
+      - { type: vocab, vi: ngon, en: delicious }
+      - { type: vocab, vi: ghế, en: chair }
+      - { type: vocab, vi: trà, en: tea }
+      - { type: vocab, vi: gì, en: what }
+      - { type: vocab, vi: về, en: "to go home, to return" }
+      - { type: vocab, vi: sáu, en: six }

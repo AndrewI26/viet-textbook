@@ -185,7 +185,7 @@ def build() -> tuple[int, int, int, set[str]]:
     decks = []
     note_count = card_count = 0
     for path in sorted(CARDS.glob("*.yaml")) if CARDS.exists() else []:
-        data = yaml.safe_load(path.read_text("utf-8")) or {}
+        data = yaml.load(path.read_text("utf-8"), Loader=yaml.BaseLoader) or {}
         chapter = int(data.get("chapter", 0))
         chapter_name = f"{DECK_NAME}::{chapter:02d} {data.get('title', path.stem)}"
         for s, section in enumerate(data.get("sections", []), 1):

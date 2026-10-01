@@ -1,0 +1,94 @@
+# Flashcards for chapter 5. See README.md ("Writing flashcards") for the card types.
+
+chapter: 5
+title: Final sounds
+
+sections:
+  - id: "5.1"
+    title: Endings that stop
+    cards:
+      - { type: basic, front: "Which eight consonants can end a syllable?", back: "**p, t, c, ch** (stop) and **m, n, ng, nh** (hum)" }
+      - { type: basic, front: "How is a final **-p, -t, -c** said?", back: "The mouth closes into position and stops. No puff of air, no release." }
+      - { type: basic, front: "Where does your mouth stop for **-p**?", back: "Lips closed: [[đẹp]]" }
+      - { type: basic, front: "Where does your mouth stop for **-t**?", back: "Tongue tip behind the top teeth: [[một]]" }
+      - { type: basic, front: "Where does your mouth stop for **-c**?", back: "Back of the tongue raised: [[học]]" }
+      - { type: basic, front: "Where does your mouth stop for **-ch**?", back: "Middle of the tongue flat on the roof of the mouth: [[sách]]" }
+      - { type: listen, vi: gặp, answer: "ends **-p** · to meet" }
+      - { type: listen, vi: gặt, answer: "ends **-t** · to harvest" }
+      - { type: read, vi: đẹp, tip: "beautiful. Lips close and stop." }
+      - { type: read, vi: tốt, tip: "good" }
+      - { type: read, vi: các, tip: "(makes nouns plural)" }
+      - { type: read, vi: sách, tip: "book" }
+
+  - id: "5.2"
+    title: Endings that hum
+    cards:
+      - { type: basic, front: "Which humming ending matches which stopping ending?", back: "**m/p** lips · **n/t** tongue tip · **ng/c** back of tongue · **nh/ch** middle of tongue" }
+      - { type: basic, front: "Where does your mouth end for **-m**?", back: "Lips closed: [[cơm]]" }
+      - { type: basic, front: "Where does your mouth end for **-nh**?", back: "Middle of the tongue flat on the roof of the mouth: [[anh]]" }
+      - { type: listen, vi: làm, answer: "ends **-m** · to do, to make" }
+      - { type: listen, vi: làn, answer: "ends **-n** · lane" }
+      - { type: read, vi: làm, tip: "to do, to make" }
+      - { type: read, vi: bàn, tip: "table" }
+      - { type: read, vi: sáng, tip: "morning" }
+      - { type: read, vi: xanh, tip: "blue, green" }
+
+  - id: "5.3"
+    title: Southern endings
+    cards:
+      - { type: basic, front: "In the South, how does **-n** usually sound?", back: "Like **-ng**: [[bạn]] → \"bạng\"" }
+      - { type: basic, front: "In the South, how does **-t** usually sound?", back: "Like **-c**: [[mắt]] → \"mắc\"" }
+      - { type: basic, front: "In the South, how does **-nh** sound?", back: "Like **-n**: [[anh]] → \"an\"" }
+      - { type: basic, front: "In the South, how does **-ch** sound?", back: "Like **-t**: [[sách]] → \"sát\"" }
+      - { type: basic, front: "After which vowel do **-n** and **-t** keep their own sound in the South?", back: "After **i**: [[tin]], [[ít]]" }
+      - { type: basic, front: "Which two words sound the same in Saigon: *eye* and *expensive*?", back: "[[mắt]] and [[mắc]]" }
+      - { type: basic, front: "Do you have to merge endings when you speak?", back: "No. Endings said as spelled are always understood. You need to *hear* the merged ones." }
+      - { type: listen, vi: bạn, answer: "**bạn** (friend). The -n sounds like -ng." }
+      - { type: listen, vi: lớn, answer: "**lớn** (big). The -n sounds like -ng." }
+      - { type: listen, vi: anh, answer: "**anh** (older brother). The -nh sounds like -n." }
+      - { type: listen, vi: thích, answer: "**thích** (to like). The -ch sounds like -t." }
+      - { type: listen, vi: mắt, answer: "**mắt** (eye). Same sound as mắc (expensive)." }
+
+  - id: "5.4"
+    title: Endings that close your lips
+    cards:
+      - { type: basic, front: "After which vowels do **-ng** and **-c** close your lips?", back: "**o, ô, u**: [[không]], [[học]], [[cũng]]" }
+      - { type: basic, front: "How does [[không]] end?", back: "Almost like \"khôm\": the lips close." }
+      - { type: read, vi: ông, tip: "grandfather; Mr. Lips close at the end." }
+      - { type: read, vi: không, tip: "no. Lips close at the end." }
+      - { type: read, vi: trong, tip: "in, inside" }
+      - { type: read, vi: cũng, tip: "also" }
+      - { type: read, vi: đọc, tip: "to read" }
+
+  - id: "5.5"
+    title: How to read any word
+    cards:
+      - { type: basic, front: "The five steps to read any word?", back: "1. Start  2. Vowel  3. End  4. Tone  5. Say it, with the Southern changes" }
+      - { type: basic, front: "Split [[nghiêng]]: start · vowel · end · tone", back: "ngh · iê · ng · ngang" }
+      - { type: basic, front: "Split [[chuyện]]: start · vowel · end · tone", back: "ch · uyê · n · nặng" }
+      - { type: basic, front: "Split [[trường]]: start · vowel · end · tone", back: "tr · ươ · ng · huyền" }
+      - { type: basic, front: "Split [[nhanh]]: start · vowel · end · tone", back: "nh · a · nh · ngang" }
+      - { type: basic, front: "How is [[Việt]] said in the South?", back: "Like \"Yiệc\": v → y, -t → -c" }
+      - { type: read, vi: nghiêng, tip: "to tilt" }
+      - { type: read, vi: chuyện, tip: "story" }
+      - { type: read, vi: trường, tip: "school" }
+      - { type: read, vi: nhanh, tip: "fast" }
+      - { type: read, vi: khuyết, tip: "missing, lacking" }
+
+  - title: Vocabulary
+    cards:
+      - { type: vocab, vi: gặp, en: to meet }
+      - { type: vocab, vi: sách, en: book }
+      - { type: vocab, vi: thích, en: to like }
+      - { type: vocab, vi: đọc, en: to read }
+      - { type: vocab, vi: làm, en: "to do, to make" }
+      - { type: vocab, vi: lớn, en: big }
+      - { type: vocab, vi: xanh, en: "blue, green" }
+      - { type: vocab, vi: mắt, en: eye }
+      - { type: vocab, vi: mắc, en: expensive (Southern) }
+      - { type: vocab, vi: ông, en: "grandfather; Mr." }
+      - { type: vocab, vi: cũng, en: also }
+      - { type: vocab, vi: trong, en: "in, inside" }
+      - { type: vocab, vi: ít, en: "a little, few" }
+      - { type: vocab, vi: trường, en: school }
+      - { type: vocab, vi: nhanh, en: fast }

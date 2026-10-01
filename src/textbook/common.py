@@ -57,7 +57,8 @@ def collect_texts() -> set[str]:
         for match in SAY_MARKUP.finditer(source):
             texts.add(parse_say(match.group(1))[1])
     for deck in sorted(CARDS.glob("*.yaml")) if CARDS.exists() else []:
-        data = yaml.safe_load(deck.read_text("utf-8")) or {}
+        # BaseLoader keeps every value as text, so Vietnamese words like "no" (full) aren't read as booleans.
+        data = yaml.load(deck.read_text("utf-8"), Loader=yaml.BaseLoader) or {}
         for section in data.get("sections", []):
             for card in section.get("cards", []):
                 if card.get("vi"):

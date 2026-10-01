@@ -259,7 +259,7 @@ def render_builders(body: str, base: str, missing: set[str]) -> str:
 
 
 def table_of_contents(chapters: list[Page], parts: dict[int, str], base: str) -> str:
-    """The home page's contents: each chapter with its numbered sections inline, grouped by part."""
+    """The home page's contents: each chapter with its numbered sections listed below, grouped by part."""
     out = ['<div class="toc">']
     for index, (name, pages) in enumerate(grouped(chapters, parts), 1):
         if name:
@@ -267,16 +267,21 @@ def table_of_contents(chapters: list[Page], parts: dict[int, str], base: str) ->
         out.append('<ol class="toc-list">')
         for p in pages:
             num = f"{p.number:02d}" if p.number is not None else ""
-            sections = [
-                f'<a class="toc-link" href="{base}{p.out}#{sid}">{html.escape(label)}</a>'
-                for sid, label in p.sections
-                if label[:1].isdigit()  # numbered sections only, not Vocabulary / Flashcards
-            ]
+            sections = []
+            for sid, label in p.sections:
+                number, _, title = label.partition(" ")
+                if not number[:1].isdigit():
+                    continue  # numbered sections only, not Vocabulary / Flashcards
+                sections.append(
+                    f'<li><a class="toc-link" href="{base}{p.out}#{sid}">'
+                    f'<span class="toc-snum">{html.escape(number)}</span>'
+                    f'<span>{html.escape(title)}</span></a></li>'
+                )
             out.append(
                 '<li class="toc-chapter">'
                 f'<a class="toc-link toc-title" href="{base}{p.out}">'
                 f'<span class="toc-num">{num}</span><span class="toc-name">{html.escape(p.title_text)}</span></a>'
-                f'<p class="toc-sections">{" <span class=\"toc-sep\">·</span> ".join(sections)}</p>'
+                f'<ul class="toc-sections">{"".join(sections)}</ul>'
                 "</li>"
             )
         out.append("</ol>")

@@ -649,14 +649,23 @@ h1 {
 }
 .toc-title:hover .toc-name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 .prose .toc-sections {
-  margin: 6px 0 0 40px;
-  font-size: 14px;
-  line-height: 1.8;
-  color: var(--muted);
+  margin: 8px 0 0 40px;
+  padding: 0;
+  list-style: none;
 }
-.toc-sections .toc-link { color: var(--muted); text-decoration: none; white-space: nowrap; transition: color 0.15s ease; }
+.prose .toc-sections li { margin: 0; }
+.toc-sections .toc-link {
+  display: flex;
+  gap: 12px;
+  padding: 3px 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
 .toc-sections .toc-link:hover { color: var(--text-strong); }
-.toc-sep { margin: 0 2px; color: var(--border-strong); }
+.toc-snum { min-width: 28px; font-variant-numeric: tabular-nums; }
 
 /* ---------- Callouts ---------- */
 
@@ -1143,6 +1152,7 @@ math mtext { font-family: var(--font-serif); }
 @media (max-width: 600px) {
   .topbar { padding: 0 16px; }
   .prose .toc-sections { margin-left: 0; }
+  .prose .toc-chapter { padding-bottom: 12px; }
   sentence-builder { padding: 16px; }
   .prose .sb-sentence { font-size: 22px; }
   .sb-label { min-width: 100%; }

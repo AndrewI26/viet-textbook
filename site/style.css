@@ -464,10 +464,14 @@ h1 {
   border-radius: 50%;
   background: var(--surface-2);
   color: var(--text);
-  vertical-align: -0.28em;
+  /* Centre the chip on the text box. (Aligning by baseline would use the icon's
+     bottom edge and push the chip down.) */
+  vertical-align: middle;
+  position: relative;
+  top: var(--say-nudge, -0.1em);
   transition: background-color 0.15s ease, color 0.15s ease;
 }
-.say-icon svg { width: 62%; height: 62%; }
+.say-icon svg { display: block; width: 62%; height: 62%; }
 
 .say:hover .say-text,
 .demo-hover .say .say-text {
@@ -781,7 +785,16 @@ minimal-pair .drill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 minimal-pair .drill-cell { min-height: 132px; }
-.drill-cell .say { font-size: 28px; line-height: 1.2; }
+/* In practice grids the chip always sits under the word, never wrapping unpredictably. */
+.drill-cell .say {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 28px;
+  line-height: 1.2;
+}
+.drill-cell .say-icon { margin-left: 0; top: 0; width: 30px; height: 30px; }
 minimal-pair .drill-cell .say { font-size: 36px; }
 .drill-label { font-size: 13px; color: var(--muted); }
 

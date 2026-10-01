@@ -1,0 +1,115 @@
+# Flashcards for chapter 7. See README.md ("Writing flashcards") for the card types.
+
+chapter: 7
+title: Numbers
+
+sections:
+  - id: "7.1"
+    title: Zero to ten
+    cards:
+      - { type: vocab, vi: "không", en: "0 (zero)" }
+      - { type: vocab, vi: "một", en: "1" }
+      - { type: vocab, vi: "hai", en: "2" }
+      - { type: vocab, vi: "ba", en: "3" }
+      - { type: vocab, vi: "bốn", en: "4" }
+      - { type: vocab, vi: "năm", en: "5" }
+      - { type: vocab, vi: "sáu", en: "6" }
+      - { type: vocab, vi: "bảy", en: "7" }
+      - { type: vocab, vi: "tám", en: "8" }
+      - { type: vocab, vi: "chín", en: "9" }
+      - { type: vocab, vi: "mười", en: "10" }
+
+  - id: "7.2"
+    title: Eleven to nineteen
+    cards:
+      - { type: basic, front: "How do you build 11–19?", back: "**mười** + the number: [[mười ba]] (13)" }
+      - { type: basic, front: "What happens to **năm** (5) after **mười**?", back: "It becomes **lăm**: [[mười lăm]] (15)" }
+      - { type: listen, vi: "mười một", answer: "11" }
+      - { type: listen, vi: "mười bốn", answer: "14" }
+      - { type: listen, vi: "mười lăm", answer: "15" }
+      - { type: listen, vi: "mười bảy", answer: "17" }
+      - { type: listen, vi: "mười chín", answer: "19" }
+
+  - id: "7.3"
+    title: Twenty to ninety-nine
+    cards:
+      - { type: basic, front: "How do you build 20–99?", back: "tens + **mươi** + ones: [[ba mươi bảy]] (37)" }
+      - { type: basic, front: "**mười** or **mươi**: which is 10, and which is the \"-ty\" in 20–90?", back: "**mười** (falling) = 10. **mươi** (flat) = \"-ty\"." }
+      - { type: basic, front: "What do **một**, **bốn** and **năm** become after **mươi**?", back: "**mốt**, **tư**, **lăm**: [[hai mươi mốt]], [[ba mươi tư]], [[bốn mươi lăm]]" }
+      - { type: basic, front: "Southern shortcut: what's **hai chục**?", back: "20 (*chục* counts tens)" }
+      - { type: basic, front: "Southern shortcut: what do *hai mươi* and *ba mươi* shrink to?", back: "**hăm** and **băm**: [[hăm mốt]] (21), [[băm lăm]] (35)" }
+      - { type: listen, vi: "hai mươi", answer: "20" }
+      - { type: listen, vi: "hai mươi mốt", answer: "21" }
+      - { type: listen, vi: "ba mươi tư", answer: "34" }
+      - { type: listen, vi: "bốn mươi lăm", answer: "45" }
+      - { type: listen, vi: "năm mươi", answer: "50" }
+      - { type: listen, vi: "chín mươi chín", answer: "99" }
+      - { type: listen, vi: "năm chục", answer: "50 (Southern, counting in tens)" }
+
+  - id: "7.4"
+    title: Hundreds, thousands, millions
+    cards:
+      - { type: basic, front: "What fills an empty tens place, as in 105?", back: "**lẻ**: [[một trăm lẻ năm]] (North: *linh*)" }
+      - { type: basic, front: "What's the Southern word for \"thousand\"?", back: "**ngàn** (North: *nghìn*)" }
+      - { type: basic, front: "How do you say 10,000?", back: "\"ten thousand\": [[mười ngàn]]" }
+      - { type: vocab, vi: "trăm", en: hundred }
+      - { type: vocab, vi: "ngàn", en: "thousand (Southern)" }
+      - { type: vocab, vi: "triệu", en: million }
+      - { type: listen, vi: "một trăm", answer: "100" }
+      - { type: listen, vi: "hai trăm năm mươi", answer: "250" }
+      - { type: listen, vi: "một trăm ngàn", answer: "100,000" }
+      - { type: listen, vi: "một triệu", answer: "1,000,000" }
+
+  - id: "7.5"
+    title: How old are you?
+    cards:
+      - { type: basic, front: "**bao nhiêu** or **mấy**: which is for small numbers?", back: "**mấy** (like a child's age). **bao nhiêu** works for any amount." }
+      - { type: basic, front: "Why do Vietnamese people ask your age?", back: "To work out whether to call you *anh*, *chị* or *em*." }
+      - { type: vocab, vi: "Anh bao nhiêu tuổi?", en: "How old are you? (to a man a bit older)" }
+      - { type: vocab, vi: "Tôi ba mươi tuổi.", en: "I'm thirty." }
+      - { type: vocab, vi: "Con mấy tuổi?", en: "How old are you? (to a child)" }
+      - { type: vocab, vi: "tuổi", en: "age, years old" }
+
+  - id: "7.6"
+    title: How much is it?
+    cards:
+      - { type: basic, front: "How do you get a vendor's or waiter's attention?", back: "Their word + **ơi**: [[Cô ơi!]] [[Anh ơi!]]" }
+      - { type: basic, front: "At a Southern market, what does *bốn lăm* mean?", back: "45,000 (*bốn chục lăm ngàn*)" }
+      - { type: vocab, vi: "Bao nhiêu tiền?", en: "How much is it?" }
+      - { type: vocab, vi: "Cái này bao nhiêu?", en: "How much is this?" }
+      - { type: vocab, vi: "Mắc quá!", en: "Too expensive!" }
+      - { type: vocab, vi: "Rẻ quá!", en: "So cheap!" }
+      - { type: vocab, vi: "Bớt chút đi.", en: "Knock a bit off." }
+      - { type: vocab, vi: "Được không?", en: "Is that okay?" }
+      - { type: vocab, vi: "tiền", en: money }
+      - { type: vocab, vi: "rẻ", en: cheap }
+
+  - id: "7.7"
+    title: "Dialogue: at the market"
+    cards:
+      - { type: listen, vi: "Cô ơi, xoài này bao nhiêu tiền một ký?", answer: "How much are these mangoes a kilo?" }
+      - { type: listen, vi: "Năm chục ngàn một ký con.", answer: "50,000 a kilo." }
+      - { type: listen, vi: "Mắc quá! Bốn chục được không cô?", answer: "Too expensive! How about 40?" }
+      - { type: listen, vi: "Thôi, bốn lăm nha.", answer: "Okay, 45 then." }
+      - { type: listen, vi: "Dạ, con lấy hai ký.", answer: "I'll take two kilos." }
+      - { type: listen, vi: "Chín chục ngàn nha con.", answer: "That's 90,000." }
+      - { type: vocab, vi: "xoài", en: mango }
+      - { type: vocab, vi: "ký", en: kilo }
+      - { type: vocab, vi: "lấy", en: to take }
+      - { type: vocab, vi: "này", en: this }
+
+  - id: "7.8"
+    title: Practice
+    cards:
+      - { type: listen, vi: "bốn mươi", answer: "40" }
+      - { type: listen, vi: "bốn mươi mốt", answer: "41" }
+      - { type: listen, vi: "hai mươi lăm", answer: "25" }
+      - { type: listen, vi: "năm mươi lăm", answer: "55" }
+      - { type: listen, vi: "sáu mươi tám", answer: "68" }
+      - { type: listen, vi: "bảy mươi mốt", answer: "71" }
+      - { type: listen, vi: "ba trăm lẻ năm", answer: "305" }
+      - { type: listen, vi: "hai mươi lăm ngàn", answer: "25,000" }
+      - { type: basic, front: "Say 68", back: "[[sáu mươi tám]]" }
+      - { type: basic, front: "Say 71", back: "[[bảy mươi mốt]]" }
+      - { type: basic, front: "Say 305", back: "[[ba trăm lẻ năm]]" }
+      - { type: basic, front: "Say 25,000", back: "[[hai mươi lăm ngàn]] (Southern: [[hăm lăm ngàn]])" }

@@ -94,7 +94,7 @@ sections:
       - { type: basic,  front: "Which tones merge in the South?", back: "[[hỏi]] and [[ngã]]" }
 ```
 
-Text can use Markdown and `[[word]]` for audio. Cards keep their identity across rebuilds, so re-importing the deck into Anki updates existing cards and keeps your review history. Give a card an `id:` if you plan to change its main text.
+Text can use Markdown and `[[word]]` for audio. Put quotes around any text containing `: ? , { } [ ]` or `#` (for example `vi: "Anh tên gì?"`). Cards keep their identity across rebuilds, so re-importing the deck into Anki updates existing cards and keeps your review history. Give a card an `id:` if you plan to change its main text.
 
 ## Real recordings
 

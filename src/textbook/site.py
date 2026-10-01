@@ -18,6 +18,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 import markdown
+import yaml
 
 from .common import ANKI, AUDIO, CHAPTERS, DIST, SAY_MARKUP, SITE, audio_filename, parse_say
 
@@ -164,21 +165,44 @@ def link_words(fragment: str, base: str, missing: set[str]) -> str:
     return SAY_OR_SKIP.sub(replace, fragment)
 
 
-def chapter_cards(chapters: list[Page], base: str) -> str:
-    cards = []
+def load_parts() -> dict[int, str]:
+    """Part names from chapters/parts.yaml, keyed by the chapter each part starts at."""
+    path = CHAPTERS / "parts.yaml"
+    if not path.exists():
+        return {}
+    data = yaml.load(path.read_text("utf-8"), Loader=yaml.BaseLoader) or {}
+    return {int(number): name for number, name in data.items()}
+
+
+def grouped(chapters: list[Page], parts: dict[int, str]) -> list[tuple[str, list[Page]]]:
+    """Chapters grouped by part: [(part name, chapters)]. One unnamed group if there are no parts."""
+    groups: list[tuple[str, list[Page]]] = []
     for p in chapters:
-        count = len(p.sections)
-        cards.append(
-            f'<a class="card card-link" href="{base}{p.out}">'
-            f'<span class="eyebrow">{p.eyebrow}</span>'
-            f'<span class="card-title">{html.escape(p.title_text)}</span>'
-            f'<span class="card-meta">{count} section{"s" if count != 1 else ""}</span>'
-            "</a>"
-        )
-    return f'<div class="card-grid">{"".join(cards)}</div>'
+        if p.number in parts or not groups:
+            groups.append((parts.get(p.number, ""), []))
+        groups[-1][1].append(p)
+    return groups
 
 
-def sidebar(chapters: list[Page], styleguide: Page | None, current: Page) -> str:
+def chapter_cards(chapters: list[Page], parts: dict[int, str], base: str) -> str:
+    blocks = []
+    for name, pages in grouped(chapters, parts):
+        cards = []
+        for p in pages:
+            count = len(p.sections)
+            cards.append(
+                f'<a class="card card-link" href="{base}{p.out}">'
+                f'<span class="eyebrow">{p.eyebrow}</span>'
+                f'<span class="card-title">{html.escape(p.title_text)}</span>'
+                f'<span class="card-meta">{count} section{"s" if count != 1 else ""}</span>'
+                "</a>"
+            )
+        heading = f'<h3 class="part-title">{html.escape(name)}</h3>' if name else ""
+        blocks.append(f'{heading}<div class="card-grid">{"".join(cards)}</div>')
+    return "".join(blocks)
+
+
+def sidebar(chapters: list[Page], parts: dict[int, str], styleguide: Page | None, current: Page) -> str:
     b = current.base
 
     def item(p: Page, label: str, num: str = "") -> str:
@@ -188,21 +212,22 @@ def sidebar(chapters: list[Page], styleguide: Page | None, current: Page) -> str
         num_html = f'<span class="nav-num">{num}</span>' if num else ""
         return f'<a class="{cls}" href="{b}{p.out}"{aria}>{num_html}<span>{html.escape(label)}</span></a>'
 
-    parts = [f'<a class="nav-item{" is-active" if current.out == "index.html" else ""}" href="{b}index.html">Home</a>']
-    parts.append('<p class="nav-label">Chapters</p><ol class="nav-chapters">')
-    for p in chapters:
-        num = f"{p.number:02d}" if p.number is not None else ""
-        sections = ""
-        if p is current and p.sections:
-            links = "".join(
-                f'<li><a href="#{sid}">{html.escape(label)}</a></li>' for sid, label in p.sections
-            )
-            sections = f'<ul class="nav-sections">{links}</ul>'
-        parts.append(f"<li>{item(p, p.title_text, num)}{sections}</li>")
-    parts.append("</ol>")
+    out = [f'<a class="nav-item{" is-active" if current.out == "index.html" else ""}" href="{b}index.html">Home</a>']
+    for name, pages in grouped(chapters, parts):
+        out.append(f'<p class="nav-label">{html.escape(name or "Chapters")}</p><ol class="nav-chapters">')
+        for p in pages:
+            num = f"{p.number:02d}" if p.number is not None else ""
+            sections = ""
+            if p is current and p.sections:
+                links = "".join(
+                    f'<li><a href="#{sid}">{html.escape(label)}</a></li>' for sid, label in p.sections
+                )
+                sections = f'<ul class="nav-sections">{links}</ul>'
+            out.append(f"<li>{item(p, p.title_text, num)}{sections}</li>")
+        out.append("</ol>")
     if styleguide:
-        parts.append(f'<div class="nav-footer">{item(styleguide, "Style guide")}</div>')
-    return "".join(parts)
+        out.append(f'<div class="nav-footer">{item(styleguide, "Style guide")}</div>')
+    return "".join(out)
 
 
 def pager(sequence: list[Page], current: Page) -> str:
@@ -263,6 +288,7 @@ def build() -> tuple[int, set[str]]:
     styleguide = next((p for p in pages if p.out == "styleguide.html"), None)
     chapters = [p for p in pages if p.out.startswith("chapters/")]
     sequence = ([home] if home else []) + chapters
+    parts = load_parts()
     template = (SITE / "template.html").read_text("utf-8")
 
     if DIST.exists():
@@ -273,7 +299,7 @@ def build() -> tuple[int, set[str]]:
     missing: set[str] = set()
     for page in pages:
         b = page.base
-        body = page.body.replace(CHAPTER_CARDS_MARKER, chapter_cards(chapters, b))
+        body = page.body.replace(CHAPTER_CARDS_MARKER, chapter_cards(chapters, parts, b))
         body = link_words(body, b, missing)
         title = link_words(page.title, b, missing)
         scripts = "\n".join(
@@ -289,7 +315,7 @@ def build() -> tuple[int, set[str]]:
             doc_title=html.escape(doc_title),
             site_name=SITE_NAME,
             component_scripts=scripts,
-            sidebar=sidebar(chapters, styleguide, page),
+            sidebar=sidebar(chapters, parts, styleguide, page),
             eyebrow=eyebrow,
             title=title,
             content=body,

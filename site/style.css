@@ -606,6 +606,16 @@ h1 {
   color: var(--muted);
 }
 
+.prose .part-title {
+  margin: 40px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.prose .part-title + .card-grid { margin-top: 12px; }
+
 /* ---------- Callouts ---------- */
 
 .tip,

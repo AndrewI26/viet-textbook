@@ -1,0 +1,92 @@
+# Flashcards for chapter 6. See README.md ("Writing flashcards") for the card types.
+
+chapter: 6
+title: Greetings and introductions
+
+sections:
+  - id: "6.1"
+    title: Saying hello
+    cards:
+      - { type: basic, front: "What's the everyday word for hello (and goodbye)?", back: "[[chào]], plus the person: [[Chào anh!]]" }
+      - { type: basic, front: "When does **xin chào** fit?", back: "Formal situations: a group, a stranger, a sign. In everyday life it sounds stiff." }
+      - { type: basic, front: "How do you greet someone older extra politely?", back: "Put yourself first and add **ạ**: [[Em chào anh ạ.]]" }
+      - { type: basic, front: "What does **nha** add at the end of a sentence?", back: "Warmth and friendliness (very Southern): [[Chào anh nha!]]" }
+      - { type: vocab, vi: "Chào anh!", en: "Hi! (to a man a bit older)" }
+      - { type: vocab, vi: "Chào chị!", en: "Hi! (to a woman a bit older)" }
+      - { type: vocab, vi: "Chào em!", en: "Hi! (to someone younger)" }
+      - { type: vocab, vi: "Chào bạn!", en: "Hi! (to someone your age)" }
+      - { type: vocab, vi: "Em chào anh ạ.", en: "Hello (politely, from a younger person)" }
+      - { type: vocab, vi: "Tạm biệt!", en: Goodbye. }
+      - { type: vocab, vi: "Hẹn gặp lại!", en: See you again! }
+
+  - id: "6.2"
+    title: Who's who
+    cards:
+      - { type: basic, front: "What do you call a man a bit older than you, and yourself?", back: "**anh**, and you're **em**" }
+      - { type: basic, front: "What do you call a woman a bit older than you, and yourself?", back: "**chị**, and you're **em**" }
+      - { type: basic, front: "What do you call someone younger, and yourself?", back: "**em**, and you're **anh** or **chị**" }
+      - { type: basic, front: "What do you call a woman your parents' age, and yourself?", back: "**cô**, and you're **con**" }
+      - { type: basic, front: "What do you call a man your parents' age, and yourself?", back: "**chú**, and you're **con**" }
+      - { type: basic, front: "What do you call an older woman? An older man?", back: "**bà** · **ông** (and you're **con**)" }
+      - { type: basic, front: "What do you call someone your age, and yourself?", back: "**bạn**, and you're **tôi**, **tui** or **mình**" }
+      - { type: basic, front: "Not sure what to call an adult who isn't elderly?", back: "**anh** (man) or **chị** (woman), and call yourself **em**" }
+      - { type: basic, front: "How do you say \"you all\"?", back: "Add **các**: các anh, các chị, [[các bạn]]" }
+      - { type: basic, front: "How do you say \"he\" (a young man) and \"she\" (a young woman)?", back: "[[anh ấy]] · [[chị ấy]]" }
+      - { type: basic, front: "In the South, what do *anh ấy*, *chị ấy* and *ông ấy* often become?", back: "[[ảnh]] · [[chỉ]] · [[ổng]]" }
+      - { type: vocab, vi: "anh", en: "older brother; you (to a man a bit older)" }
+      - { type: vocab, vi: "chị", en: "older sister; you (to a woman a bit older)" }
+      - { type: vocab, vi: "em", en: "younger sibling; you (to someone younger)" }
+      - { type: vocab, vi: "cô", en: "aunt; you (to a woman your parents' age)" }
+      - { type: vocab, vi: "chú", en: "uncle; you (to a man your parents' age)" }
+      - { type: vocab, vi: "con", en: "child; I (to someone your parents' age or older)" }
+      - { type: vocab, vi: "mình", en: "I (friendly)" }
+
+  - id: "6.3"
+    title: Introducing yourself
+    cards:
+      - { type: basic, front: "What does **là** do?", back: "Links two things: A là B. [[Tôi là người Mỹ.]]" }
+      - { type: basic, front: "How do you say what country someone is from?", back: "**người** + country: [[người Úc]] (an Australian)" }
+      - { type: vocab, vi: "Tôi tên là Lan.", en: My name is Lan. }
+      - { type: vocab, vi: "Tôi là người Mỹ.", en: I'm American. }
+      - { type: vocab, vi: "Đây là anh Minh.", en: This is Minh. }
+      - { type: vocab, vi: "Rất vui được gặp anh.", en: "Nice to meet you. (to a man a bit older)" }
+      - { type: vocab, vi: "người", en: person }
+      - { type: vocab, vi: "Úc", en: Australia }
+      - { type: vocab, vi: "Pháp", en: France }
+
+  - id: "6.4"
+    title: Asking someone's name
+    cards:
+      - { type: basic, front: "Where does **gì** (what) go in a question?", back: "Where the answer would be, usually at the end: [[Anh tên gì?]]" }
+      - { type: basic, front: "How do you turn a question back on someone: \"And you?\"", back: "**còn** + the person: [[Còn anh?]]" }
+      - { type: vocab, vi: "Anh tên gì?", en: "What's your name? (to a man a bit older)" }
+      - { type: vocab, vi: "Em tên gì?", en: "What's your name? (to someone younger)" }
+      - { type: vocab, vi: "Chị là người nước nào?", en: "Where are you from? (to a woman a bit older)" }
+      - { type: vocab, vi: "Còn anh?", en: "And you? (to a man a bit older)" }
+      - { type: listen, vi: "Em tên gì?", answer: "What's your name?" }
+      - { type: listen, vi: "Chị là người nước nào?", answer: "Where are you from?" }
+
+  - id: "6.5"
+    title: Polite words
+    cards:
+      - { type: basic, front: "What's the polite Southern \"yes\"?", back: "[[dạ]]. Also how you answer when called. (North: *vâng*)" }
+      - { type: basic, front: "What does **ạ** at the end of a sentence do?", back: "Shows respect to someone older: [[Cảm ơn cô ạ.]]" }
+      - { type: vocab, vi: "dạ", en: "yes (polite, Southern)" }
+      - { type: vocab, vi: "cảm ơn", en: thank you }
+      - { type: vocab, vi: "không có gì", en: you're welcome }
+      - { type: vocab, vi: "xin lỗi", en: "sorry; excuse me" }
+      - { type: vocab, vi: "không sao", en: "it's okay, no problem" }
+      - { type: vocab, vi: "Cảm ơn nha!", en: "Thanks! (friendly)" }
+      - { type: listen, vi: "Dạ, không có gì.", answer: "You're welcome." }
+
+  - id: "6.6"
+    title: Dialogues
+    cards:
+      - { type: listen, vi: "Chào em! Em tên gì?", answer: "Hi! What's your name?" }
+      - { type: listen, vi: "Dạ, em tên Lan. Còn anh?", answer: "I'm Lan. And you?" }
+      - { type: listen, vi: "Anh tên Mark. Anh là người Mỹ.", answer: "I'm Mark. I'm American." }
+      - { type: listen, vi: "Rất vui được gặp anh!", answer: "Nice to meet you!" }
+      - { type: listen, vi: "Anh cũng vậy. Cảm ơn em nha!", answer: "Same here. Thanks!" }
+      - { type: listen, vi: "Con chào cô ạ!", answer: "Hello! (politely, to a woman your parents' age)" }
+      - { type: listen, vi: "Con là người nước nào?", answer: "Where are you from? (to someone younger)" }
+      - { type: vocab, vi: "cũng vậy", en: "same here, likewise" }

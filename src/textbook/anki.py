@@ -25,9 +25,8 @@ from pathlib import Path
 
 import genanki
 import markdown
-import yaml
 
-from .common import ANKI, AUDIO, CARDS, SAY_MARKUP, audio_filename, normalize, parse_say
+from .common import ANKI, AUDIO, CARDS, SAY_MARKUP, audio_filename, load_cards, normalize, parse_say
 
 DECK_NAME = "Vietnamese (Southern)"
 OUTPUT = ANKI / "vietnamese-southern.apkg"
@@ -185,7 +184,7 @@ def build() -> tuple[int, int, int, set[str]]:
     decks = []
     note_count = card_count = 0
     for path in sorted(CARDS.glob("*.yaml")) if CARDS.exists() else []:
-        data = yaml.load(path.read_text("utf-8"), Loader=yaml.BaseLoader) or {}
+        data = load_cards(path)
         chapter = int(data.get("chapter", 0))
         chapter_name = f"{DECK_NAME}::{chapter:02d} {data.get('title', path.stem)}"
         for s, section in enumerate(data.get("sections", []), 1):

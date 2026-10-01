@@ -49,6 +49,20 @@ def page_sources() -> list[Path]:
     return sorted(pages)
 
 
+def load_cards(path: Path) -> dict:
+    """Read a cards/*.yaml file. Every value stays text, so Vietnamese words like "no" (full)
+    aren't read as booleans. A syntax error stops with the file and line, not a traceback."""
+    try:
+        return yaml.load(path.read_text("utf-8"), Loader=yaml.BaseLoader) or {}
+    except yaml.YAMLError as error:
+        mark = getattr(error, "problem_mark", None)
+        where = f"{path.name}, line {mark.line + 1}" if mark else path.name
+        raise SystemExit(
+            f"error: can't read {where}: {getattr(error, 'problem', error)}\n"
+            "Tip: put quotes around text containing : ? , { } [ ] or #, e.g. vi: \"Anh tên gì?\""
+        ) from None
+
+
 def collect_texts() -> set[str]:
     """Every word or phrase that needs audio: [[…]] on pages, plus `vi` on flashcards."""
     texts: set[str] = set()
@@ -57,8 +71,7 @@ def collect_texts() -> set[str]:
         for match in SAY_MARKUP.finditer(source):
             texts.add(parse_say(match.group(1))[1])
     for deck in sorted(CARDS.glob("*.yaml")) if CARDS.exists() else []:
-        # BaseLoader keeps every value as text, so Vietnamese words like "no" (full) aren't read as booleans.
-        data = yaml.load(deck.read_text("utf-8"), Loader=yaml.BaseLoader) or {}
+        data = load_cards(deck)
         for section in data.get("sections", []):
             for card in section.get("cards", []):
                 if card.get("vi"):
